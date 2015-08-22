@@ -16,6 +16,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
   override def run(delta: Float): Unit = {
     Gdx.gl.glClearColor(0, 0, 0, 0)
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT)
+    Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
+    //Gdx.gl.glEnable(GL20.GL_BLEND);
 
     views.foreach(_.run(delta))
   }

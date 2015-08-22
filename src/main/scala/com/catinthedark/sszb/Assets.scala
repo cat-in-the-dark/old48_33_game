@@ -1,10 +1,11 @@
 package com.catinthedark.sszb
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.Texture.TextureWrap
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
+import com.badlogic.gdx.graphics.g2d.{Animation, TextureRegion}
+import com.badlogic.gdx.{Gdx, utils}
 
 /**
  * Created by over on 13.12.14.
@@ -22,11 +23,24 @@ object Assets {
     val gameWin = new Texture(Gdx.files.internal("textures/gamewin.png"))
     val road = new Texture(Gdx.files.internal("textures/road.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
+
+    val manFrames = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/man.png")), 120, 200)
+  }
+
+  object Animations {
+    private def loopingAnimation(frames: Array[Array[TextureRegion]], delay: Float, frameIndexes: (Int, Int)*): Animation = {
+      val array = new utils.Array[TextureRegion]
+      frameIndexes.foreach(i => array.add(frames(i._1)(i._2)))
+      new Animation(delay, array, Animation.PlayMode.LOOP)
+    }
+
+    val man = loopingAnimation(Textures.manFrames, 1, (0, 0), (0, 1))
   }
 
   object Fonts {
     val mainGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/main.ttf"))
-    
+
     val timerFontParam = new FreeTypeFontParameter()
     timerFontParam.size = 44
     val timerFrontFont = mainGenerator.generateFont(timerFontParam)
