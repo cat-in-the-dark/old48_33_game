@@ -25,7 +25,7 @@ trait KeyAwaitState extends Stub {
     else super.run(delay)
 
   override def onExit(): Unit = {
-    println(s"exit from $toString")
     Gdx.input.setInputProcessor(null)
+    done = false
   }
 }
