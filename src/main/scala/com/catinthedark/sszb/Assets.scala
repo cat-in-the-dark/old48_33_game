@@ -1,7 +1,7 @@
 package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.Texture.TextureWrap
+import com.badlogic.gdx.graphics.Texture.{TextureFilter, TextureWrap}
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.graphics.g2d.{Animation, TextureRegion}
@@ -25,9 +25,13 @@ object Assets {
     val slider = new Texture(Gdx.files.internal("textures/slider.png"))
     val pointer = new Texture(Gdx.files.internal("textures/pointer.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
+    road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
+    val manTexture = new Texture(Gdx.files.internal("textures/man.png"))
+    manTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
     val manFrames = TextureRegion.split(
-      new Texture(Gdx.files.internal("textures/man.png")), 120, 200)
+      manTexture, 120, 200)
   }
 
   object Animations {
