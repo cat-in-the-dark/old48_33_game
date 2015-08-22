@@ -14,8 +14,10 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
     Gdx.input.setInputProcessor(new InputAdapter {
       override def keyDown(keycode: Int): Boolean = {
         keycode match {
-          case Input.Keys.P =>
-            println("key p pressed")
+          case Input.Keys.Z =>
+            println("key z pressed")
+          case Input.Keys.X =>
+            println("key x pressed")
           case _ =>
         }
         true

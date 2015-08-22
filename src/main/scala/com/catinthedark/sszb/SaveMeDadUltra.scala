@@ -34,7 +34,7 @@ class SaveMeDadUltra extends Game {
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
 
-    val shared: Shared = new Shared(0f, 0f)
+    val shared: Shared = new Shared(0f, 0f, 0f)
     val day = new DayState(shared)
 
     val gameOver = keyAwait("GameOver", Assets.Textures.gameOver)
