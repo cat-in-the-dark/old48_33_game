@@ -51,8 +51,14 @@ class SaveMeDadUltra extends Game {
         case false => gameOver
       }
     })
-    rm.addRoute(gameWin, anyway => t1)
-    rm.addRoute(gameOver, anyway => t1)
+    rm.addRoute(gameWin, anyway => {
+      shared.reset()
+      t1
+    })
+    rm.addRoute(gameOver, anyway => {
+      shared.reset()
+      t1
+    })
     rm.start(logo)
   }
 

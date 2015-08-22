@@ -11,4 +11,14 @@ class Shared(var lvlTime: Float,
     lvlDistance = 0f
     speed = 0f
   }
+
+  /**
+   * Called in onActivate in DayState
+   * @see DayState
+   */
+  def prepareGame() = {
+    lvlTime = 0f
+    speed = 0f
+    lvlDistance = 0f
+  }
 }

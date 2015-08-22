@@ -17,6 +17,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     override val interval = 0.2f
   }
   override def onActivate(): Unit = {
+    shared.prepareGame()
     control.onActivate()
   }
   override def onExit(): Unit = {
