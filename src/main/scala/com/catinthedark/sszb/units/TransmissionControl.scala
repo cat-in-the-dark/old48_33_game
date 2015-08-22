@@ -1,7 +1,7 @@
 package com.catinthedark.sszb.units
 
 import com.catinthedark.sszb.Shared
-import com.catinthedark.sszb.common.Const.Pedals
+import com.catinthedark.sszb.common.Const.{Physics, Pedals}
 import com.catinthedark.sszb.lib.{Deferred, SimpleUnit}
 
 /**
@@ -34,22 +34,44 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
 
   def onPedaled(key: Int): Unit = {
     currentPedal = key
-      if (key == isTimeToPedalLeft(currentPedalPosition)) {
-        shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
-      } else {
-        shared.speed = 0
-        currentPedal = Pedals.leftPedalKey
-        currentPedalPosition = leftPedalPosition
-      }
+    
+    if (key == isTimeToPedalLeft(currentPedalPosition)) {
+      shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
+    } else {
+      shared.speed = 0
+      currentPedal = Pedals.leftPedalKey
+      currentPedalPosition = leftPedalPosition
+    }
+    
+    shared.shouldStartTimer = true
     println(s"$currentPedal")
+  }
+
+  def speedToFriction(speed: Float): Float = {
+    1 - Math.cos(speed / Physics.maxSpeed * Math.PI / 2).toFloat
   }
 
   override def run(delta: Float): Unit = {
     currentPedalPosition += delta * scale * direction * shared.speed
-    if (currentPedalPosition > 1 || currentPedalPosition < 0) {
+
+    shared.speed -= speedToFriction(shared.speed) * delta
+
+    if (shared.speed <= 0.0001) {
+      shared.speed = 0
+      currentPedalPosition = leftPedalPosition
+      direction = 1
+    } else if (shared.speed >= 10.0f) {
+      shared.speed = 10.0f
+    }
+    if (currentPedalPosition > 1) {
       direction *= -1
+      currentPedalPosition = 1
+    } else if (currentPedalPosition < 0) {
+      direction *= -1
+      currentPedalPosition = 0
     }
     shared.cursorPosition = currentPedalPosition * sliderWidth
-//    println(String.format(s"$currentPedalPosition"))
+    val a = shared.speed
+//    println(s"$a")
   }
 }
