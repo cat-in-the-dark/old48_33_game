@@ -21,6 +21,8 @@ object Assets {
     val gameOver = new Texture(Gdx.files.internal("textures/gameover.png"))
     val gameWin = new Texture(Gdx.files.internal("textures/gamewin.png"))
     val road = new Texture(Gdx.files.internal("textures/road.png"))
+    val slider = new Texture(Gdx.files.internal("textures/slider.png"))
+    val pointer = new Texture(Gdx.files.internal("textures/pointer.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
   }
 
