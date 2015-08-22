@@ -11,6 +11,7 @@ class Shared(var lvlTime: Float,
              var lvlDistance: Float,
              var lvl: Int,
              var speed: Float,
+             var cursorPosition: Float,
              val creatures: mutable.ListBuffer[Creature],
              var lastSpawnDistance: Float = 0f) {
 
@@ -19,6 +20,7 @@ class Shared(var lvlTime: Float,
     lvlTime = 0f
     lvlDistance = 0f
     speed = 0f
+    cursorPosition = 0f
     lastSpawnDistance = 0f
     creatures.clear()
   }
@@ -30,6 +32,7 @@ class Shared(var lvlTime: Float,
   def prepareGame() = {
     lvlTime = 0f
     speed = 0f
+    cursorPosition = 0f
     lvlDistance = 0f
     lastSpawnDistance = 0f
     creatures.clear()

@@ -17,6 +17,8 @@ class HudView(shared: Shared) extends SimpleUnit {
     override def render(delta: Float): Unit = {
       timerHudBatch.managed { self =>
         Assets.Fonts.timerFrontFont.draw(self, s"time:${shared.lvlTime.toLong}", UI.timerPos.x, UI.timerPos.y)
+        self.draw(Assets.Textures.slider, UI.sliderPos.x, UI.sliderPos.y)
+        self.draw(Assets.Textures.pointer, UI.pointerPos.x + shared.cursorPosition, UI.pointerPos.y)
       }
     }
     

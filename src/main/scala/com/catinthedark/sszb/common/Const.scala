@@ -11,11 +11,17 @@ object Const {
   object UI {
     val screenSize = new Vector2(1152, 768)
     val timerPos = new Vector2(900, 740)
+    val sliderPos = new Vector2(476, 23)
+    val pointerPos = new Vector2(466, 43)
   }
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 100
+    val RoadSpeedScale = 0.05f
+    
+    val maxZViewPort = 110
+    val minZViewPort = -10
   }
 
   object Timing {
@@ -27,7 +33,7 @@ object Const {
   }
 
   object Difficulty {
-    val spawnDelta = 10
+    val spawnDelta = 1
 
     /**
      * depends on distance, lvl and some random make decision to generate entities
@@ -35,7 +41,7 @@ object Const {
     def spawnRandom(lvl: Int, lvlDistance: Float, lastSpawnDistance: Float, seed: Int): (Boolean, Boolean, Boolean) = {
       if (lvlDistance - lastSpawnDistance > spawnDelta) {
         lvl match {
-          case _ => (true, true, true)
+          case _ => (false, true, false)
         }
       } else {
         (false, false, false)
@@ -44,7 +50,7 @@ object Const {
 
     def mammySpeed(lvl: Int): Float = {
       //TODO: depends on lvl calculate speed
-      10
+      1
     }
 
     val seedDivider = 10

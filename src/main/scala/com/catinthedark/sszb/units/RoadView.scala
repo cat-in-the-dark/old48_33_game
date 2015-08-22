@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g3d.utils.{MeshPartBuilder, ModelBuilder}
 import com.badlogic.gdx.graphics.g3d.{Model, Material, ModelBatch, ModelInstance}
 import com.badlogic.gdx.graphics.{GL20, _}
 import com.badlogic.gdx.math.Vector3
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.lib._
 
@@ -49,7 +50,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         playerX -= 0.04f
 
-      diff += delta / 5
+      diff += delta * shared.speed * Const.Physics.RoadSpeedScale
 
       modelBuilder.begin()
       //      val node = modelBuilder.node();
@@ -69,9 +70,14 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         new Vector3(3f, 0f, 1.7f),
         new Vector3(0f, 1f, 0f))
 
+      val manTexture = if (shared.cursorPosition > 0.5f)
+        Assets.Textures.manFrames(0)(0)
+      else
+        Assets.Textures.manFrames(0)(1)
+
       val manBuilder = modelBuilder.part("man", GL20.GL_TRIANGLES,
         Usage.Position | Usage.Normal | Usage.TextureCoordinates,
-        new Material(TextureAttribute.createDiffuse(Assets.Textures.manFrames(0)(0))
+        new Material(TextureAttribute.createDiffuse(manTexture)
           , new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
           , new DepthTestAttribute(GL20.GL_ALWAYS)
         )
