@@ -14,10 +14,12 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
   val centerPedalPosition = (rightPedalPosition - leftPedalPosition) / 2
   val scale: Float = 1.0f
   var currentPedalPosition: Float = leftPedalPosition
-  var currentPedal: Int = Pedals.leftPedalKey
+  var lastPedalPosition: Float = leftPedalPosition
+  var lastPedal: Int = 0
   var direction: Int = 1
+  var crossedCenter:Boolean = false
 
-  def isTimeToPedalLeft(currentPosition: Float): Int = {
+  def currentPedalKey(currentPosition: Float): Int = {
     if (currentPosition <= 0.5f) {
       Pedals.leftPedalKey
     } else {
@@ -29,21 +31,25 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
   override def onActivate(): Unit = {
     super.onActivate()
     currentPedalPosition = leftPedalPosition
+    lastPedalPosition = leftPedalPosition
+    direction = 1
+    lastPedal = 0
   }
 
   def onPedaled(key: Int): Unit = {
-    currentPedal = key
-    
-    if (key == isTimeToPedalLeft(currentPedalPosition)) {
-      shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
+    if (key == currentPedalKey(currentPedalPosition)) {
+      if (key != lastPedal || crossedCenter) {
+        shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
+        lastPedal = key
+        crossedCenter = false
+      }
     } else {
       shared.speed = 0
-      currentPedal = Pedals.leftPedalKey
+      lastPedal = 0
       currentPedalPosition = leftPedalPosition
     }
-    
     shared.shouldStartTimer = true
-    println(s"$currentPedal")
+    println(s"$key")
   }
 
   def speedToFriction(speed: Float): Float = {
@@ -52,7 +58,11 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
 
   override def run(delta: Float): Unit = {
     currentPedalPosition += delta * scale * direction * shared.speed
-
+    if ((currentPedalPosition > centerPedalPosition && lastPedalPosition <= centerPedalPosition)
+    || (currentPedalPosition < centerPedalPosition && lastPedalPosition >= centerPedalPosition)) {
+      crossedCenter = true
+    }
+    lastPedalPosition = currentPedalPosition
     shared.speed -= speedToFriction(shared.speed) * delta
 
     if (shared.speed <= 0.0001) {
