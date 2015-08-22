@@ -19,6 +19,9 @@ object Const {
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 100
     val RoadSpeedScale = 0.05f
+    
+    val maxZViewPort = 110
+    val minZViewPort = -10
   }
 
   object Timing {

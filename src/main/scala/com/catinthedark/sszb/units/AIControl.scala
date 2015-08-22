@@ -7,7 +7,7 @@ import com.catinthedark.sszb.lib.SimpleUnit
 class AIControl(shared: Shared) extends SimpleUnit {
  override def run(delta: Float) = {
    shared.creatures.foreach((i: Creature) => {
-     i.z += i.speed * delta
+     i.z += i.speed * delta - shared.speed
    })
  }
 }

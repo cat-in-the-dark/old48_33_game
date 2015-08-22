@@ -3,7 +3,7 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.{Gdx, Input}
 import com.catinthedark.sszb.common.Const.Distance
 import com.catinthedark.sszb.lib.{Interval, LocalDeferred, SimpleUnit, YieldUnit}
-import com.catinthedark.sszb.units.{AI, AIControl, Control, HudView, TransmissionControl, View}
+import com.catinthedark.sszb.units._
 
 /**
  * Created by over on 18.04.15.
@@ -20,7 +20,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     new AIControl(shared),
     new View(shared) with LocalDeferred,
     new HudView(shared),
-    transmissionControl)
+    transmissionControl,
+    new LooseControl(shared))
   override def toString = "Day"
 
   override def onActivate(): Unit = {
@@ -38,7 +39,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     shared.lvlDistance += shared.speed * delta
 
     //println(s"DISTANCE ${shared.lvlDistance}")
-    println(s"Creatures ${shared.creatures}")
+    //println(s"Creatures ${shared.creatures}")
 
     if (shared.lvlDistance >= Distance.levelDistance) {
       Some(true)
