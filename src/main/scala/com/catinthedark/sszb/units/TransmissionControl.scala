@@ -26,6 +26,12 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
     }
   }
 
+
+  override def onActivate(): Unit = {
+    super.onActivate()
+    currentPedalPosition = leftPedalPosition
+  }
+
   def onPedaled(key: Int): Unit = {
     currentPedal = key
       if (key == isTimeToPedalLeft(currentPedalPosition)) {

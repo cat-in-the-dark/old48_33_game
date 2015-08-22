@@ -35,6 +35,10 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     units.foreach(_.run(delta))
 
     shared.lvlTime += delta
+    shared.lvlDistance += shared.speed * delta
+
+    //println(s"DISTANCE ${shared.lvlDistance}")
+    println(s"Creatures ${shared.creatures}")
 
     if (shared.lvlDistance >= Distance.levelDistance) {
       Some(true)
