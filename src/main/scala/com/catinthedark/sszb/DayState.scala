@@ -18,8 +18,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     control,
     new AI(shared) with LocalDeferred,
     new AIControl(shared),
-    new HudView(shared),
     new View(shared) with LocalDeferred,
+    new HudView(shared),
     transmissionControl)
   override def toString = "Day"
 
