@@ -67,6 +67,9 @@ object Assets {
 
   object Audios {
     val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"))
+    val bgm = Gdx.audio.newMusic(Gdx.files.internal("sfx/bgm.mp3"))
+    bgm.setVolume(0f)
+    bgm.setLooping(true)
   }
 
 }

@@ -27,9 +27,11 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   override def onActivate(): Unit = {
     shared.prepareGame()
     units.foreach(_.onActivate())
+    Assets.Audios.bgm.play()
   }
 
   override def onExit(): Unit = {
+    Assets.Audios.bgm.stop()
     units.foreach(_.onExit())
   }
   override def run(delta: Float): Option[Boolean] = {
