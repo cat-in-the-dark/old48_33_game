@@ -43,12 +43,17 @@ object Const {
       if (lvlDistance - lastSpawnDistance > spawnDelta) {
         lvl match {
           case 1 =>
-            if ((0 to 4).contains(seed)) (false, false, false)
-            else if ((5 to 6).contains(seed)) (true, false, false)
-            else if ((7 to 8).contains(seed)) (false, true, false)
+            if ((0 to 3).contains(seed)) (false, false, false)
+            else if ((4 to 5).contains(seed)) (true, false, false)
+            else if ((6 to 9).contains(seed)) (false, true, false)
             else (false, false, true)
           case 2 =>
-            (true, false, true)
+            if ((0 to 1).contains(seed)) (false, false, false)
+            else if ((2 to 3).contains(seed)) (true, false, false)
+            else if ((4 to 5).contains(seed)) (false, true, false)
+            else if ((6 to 7).contains(seed)) (false, true, false)
+            else if ((6 to 7).contains(seed)) (true, true, false)
+            else (false, true, true)
           case _ => (false, true, false)
         }
       } else {
