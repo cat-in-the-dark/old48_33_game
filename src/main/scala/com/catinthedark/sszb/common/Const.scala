@@ -1,5 +1,6 @@
 package com.catinthedark.sszb.common
 
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.{Rectangle, Vector2}
 
 /**
@@ -24,7 +25,7 @@ object Const {
   object Distance {
     val levelDistance = 42f
   }
-  
+
   object Difficulty {
     val spawnDelta = 10
 
@@ -47,5 +48,10 @@ object Const {
     }
 
     val seedDivider = 10
+  }
+
+  object Pedals {
+    val leftPedalKey = Input.Keys.Z
+    val rightPedalKey = Input.Keys.X
   }
 }

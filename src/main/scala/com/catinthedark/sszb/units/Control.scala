@@ -3,21 +3,25 @@ package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
 import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.common.Const.Pedals
 import com.catinthedark.sszb.lib._
+import com.catinthedark.sszb.common.Const
 
 /**
  * Created by over on 22.01.15.
  */
 abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
+  val onPedaled = new Pipe[(Int)]
+
   override def onActivate(): Unit = {
     Gdx.input.setInputProcessor(new InputAdapter {
       override def keyDown(keycode: Int): Boolean = {
         keycode match {
-          case Input.Keys.Z =>
-            println("key z pressed")
-          case Input.Keys.X =>
-            println("key x pressed")
+          case Const.Pedals.leftPedalKey =>
+            onPedaled(Pedals.leftPedalKey)
+          case Const.Pedals.rightPedalKey =>
+            onPedaled(Pedals.rightPedalKey)
           case _ =>
         }
         true

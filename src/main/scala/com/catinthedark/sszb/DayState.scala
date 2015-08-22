@@ -3,22 +3,24 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.{Gdx, Input}
 import com.catinthedark.sszb.common.Const.Distance
 import com.catinthedark.sszb.lib.{Interval, LocalDeferred, SimpleUnit, YieldUnit}
-import com.catinthedark.sszb.units.{AI, AIControl, Control, HudView, View}
-
+import com.catinthedark.sszb.units.{AI, AIControl, Control, HudView, TransmissionControl, View}
 
 /**
  * Created by over on 18.04.15.
  */
 class DayState(shared: Shared) extends YieldUnit[Boolean] {
+  val control = new Control(shared) with LocalDeferred with Interval {
+    override val interval = 0.2f
+  }
+  val transmissionControl = new TransmissionControl(shared) with LocalDeferred
+  control.onPedaled + (t => transmissionControl.onPedaled(t))
   var units: Seq[SimpleUnit] = Seq(
-    new Control(shared) with LocalDeferred with Interval {
-      override val interval = 0.2f
-    },
+    control,
     new AI(shared) with LocalDeferred,
     new AIControl(shared),
     new HudView(shared),
-    new View(shared) with LocalDeferred)
-
+    new View(shared) with LocalDeferred,
+    transmissionControl)
   override def toString = "Day"
 
   override def onActivate(): Unit = {
