@@ -2,10 +2,7 @@ package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.catinthedark.sszb.entity.{PotRoom, TVRoom, RoyalRoom}
 import com.catinthedark.sszb.{Shared, Assets}
-import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.lib.Magic._
 import com.catinthedark.sszb.lib._
 

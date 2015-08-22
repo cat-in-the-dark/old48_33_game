@@ -2,8 +2,6 @@ package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
-import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
 import com.catinthedark.sszb.lib._
 
 import scala.util.Random
@@ -46,6 +44,7 @@ class SaveMeDadUltra extends Game {
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
     rm.addRoute(t3, anyway => t4)
+    rm.addRoute(t4, anyway => day)
     rm.addRoute(day, res => {
       res match {
         case true => gameWin
