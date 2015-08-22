@@ -19,4 +19,7 @@ object Const {
     val levelTime = 5f
   }
 
+  object Distance {
+    val levelDistance = 42f
+  }
 }
