@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.{Rectangle, Vector2}
 object Const {
 
   object UI {
-
+    val screenSize = new Vector2(1152, 768)
+    val timerPos = new Vector2(900, 740)
   }
 
   object Physics {
