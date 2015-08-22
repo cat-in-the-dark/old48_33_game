@@ -14,6 +14,7 @@ class Shared(var lvlTime: Float,
              var cursorPosition: Float,
              val creatures: mutable.ListBuffer[Creature],
              var lastSpawnDistance: Float = 0f,
+             var palkaPos: Float = -1.0f,
              var shouldStartTimer: Boolean = false,
              var playerX: Float = 0f
               ) {
@@ -26,6 +27,7 @@ class Shared(var lvlTime: Float,
     cursorPosition = 0f
     creatures.clear()
     lastSpawnDistance = 0f
+    palkaPos = -1.0f
     shouldStartTimer = false
     playerX = 0
   }
@@ -41,6 +43,7 @@ class Shared(var lvlTime: Float,
     cursorPosition = 0f
     creatures.clear()
     lastSpawnDistance = 0f
+    palkaPos = -1.0f
     shouldStartTimer = false
     playerX = 0
   }

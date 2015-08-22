@@ -49,6 +49,7 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       currentPedalPosition = leftPedalPosition
     }
     shared.shouldStartTimer = true
+    shared.palkaPos = currentPedalPosition
     println(s"$key")
   }
 

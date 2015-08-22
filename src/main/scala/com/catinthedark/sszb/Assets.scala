@@ -26,6 +26,7 @@ object Assets {
     val pointer = new Texture(Gdx.files.internal("textures/pointer.png"))
     val XLetter = new Texture(Gdx.files.internal("textures/X.png"))
     val ZLetter = new Texture(Gdx.files.internal("textures/Z.png"))
+    val palka = new Texture(Gdx.files.internal("textures/palka.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
     road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 

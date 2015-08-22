@@ -24,6 +24,9 @@ class HudView(shared: Shared) extends SimpleUnit {
         } else {
           self.draw(Assets.Textures.ZLetter, UI.ZLetterPos.x, UI.ZLetterPos.y)
         }
+        if (shared.palkaPos > -1) {
+          self.draw(Assets.Textures.palka, UI.palkaPos.x + shared.palkaPos * sliderWidth, UI.palkaPos.y)
+        }
       }
     }
     
