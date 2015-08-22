@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g3d.utils.{MeshPartBuilder, ModelBuilder}
 import com.badlogic.gdx.graphics.g3d.{Model, Material, ModelBatch, ModelInstance}
 import com.badlogic.gdx.graphics.{GL20, _}
 import com.badlogic.gdx.math.Vector3
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.lib._
 
@@ -33,7 +34,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
 
     override def render(delta: Float): Unit = {
-      diff += delta / 5
+      diff += delta * shared.speed * Const.Physics.RoadSpeedScale
 
       modelBuilder.begin()
       //      val node = modelBuilder.node();

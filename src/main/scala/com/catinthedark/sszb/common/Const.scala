@@ -18,6 +18,7 @@ object Const {
   object Physics {
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 100
+    val RoadSpeedScale = 0.05f
   }
 
   object Timing {
