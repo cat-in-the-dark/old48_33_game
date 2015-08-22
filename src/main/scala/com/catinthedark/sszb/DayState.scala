@@ -35,7 +35,9 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   override def run(delta: Float): Option[Boolean] = {
     units.foreach(_.run(delta))
 
-    shared.lvlTime += delta
+    if (shared.shouldStartTimer) {
+      shared.lvlTime += delta
+    }
     shared.lvlDistance += shared.speed * delta
 
     //println(s"DISTANCE ${shared.lvlDistance}")

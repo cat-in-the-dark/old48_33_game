@@ -34,13 +34,16 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
 
   def onPedaled(key: Int): Unit = {
     currentPedal = key
-      if (key == isTimeToPedalLeft(currentPedalPosition)) {
-        shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
-      } else {
-        shared.speed = 0
-        currentPedal = Pedals.leftPedalKey
-        currentPedalPosition = leftPedalPosition
-      }
+    
+    if (key == isTimeToPedalLeft(currentPedalPosition)) {
+      shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
+    } else {
+      shared.speed = 0
+      currentPedal = Pedals.leftPedalKey
+      currentPedalPosition = leftPedalPosition
+    }
+    
+    shared.shouldStartTimer = true
     println(s"$currentPedal")
   }
 

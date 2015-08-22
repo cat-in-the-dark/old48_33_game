@@ -13,16 +13,18 @@ class Shared(var lvlTime: Float,
              var speed: Float,
              var cursorPosition: Float,
              val creatures: mutable.ListBuffer[Creature],
-             var lastSpawnDistance: Float = 0f) {
+             var lastSpawnDistance: Float = 0f,
+             var shouldStartTimer: Boolean = false) {
 
   def reset() = {
-    lvl = 1
     lvlTime = 0f
     lvlDistance = 0f
+    lvl = 1
     speed = 0f
     cursorPosition = 0f
-    lastSpawnDistance = 0f
     creatures.clear()
+    lastSpawnDistance = 0f
+    shouldStartTimer = false
   }
 
   /**
@@ -31,10 +33,11 @@ class Shared(var lvlTime: Float,
    */
   def prepareGame() = {
     lvlTime = 0f
+    lvlDistance = 0f
     speed = 0f
     cursorPosition = 0f
-    lvlDistance = 0f
-    lastSpawnDistance = 0f
     creatures.clear()
+    lastSpawnDistance = 0f
+    shouldStartTimer = false
   }
 }

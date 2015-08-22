@@ -11,6 +11,7 @@ object Const {
   object UI {
     val screenSize = new Vector2(1152, 768)
     val timerPos = new Vector2(900, 740)
+    val distPos = new Vector2(900, 700)
     val sliderPos = new Vector2(476, 23)
     val pointerPos = new Vector2(466, 43)
   }
@@ -41,6 +42,13 @@ object Const {
     def spawnRandom(lvl: Int, lvlDistance: Float, lastSpawnDistance: Float, seed: Int): (Boolean, Boolean, Boolean) = {
       if (lvlDistance - lastSpawnDistance > spawnDelta) {
         lvl match {
+          case 1 =>
+            if ((0 to 4).contains(seed)) (false, false, false)
+            else if ((5 to 6).contains(seed)) (true, false, false)
+            else if ((7 to 8).contains(seed)) (false, true, false)
+            else (false, false, true)
+          case 2 =>
+            (true, false, true)
           case _ => (false, true, false)
         }
       } else {
