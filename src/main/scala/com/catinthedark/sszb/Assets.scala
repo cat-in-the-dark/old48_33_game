@@ -3,6 +3,8 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.Texture.TextureWrap
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 
 /**
  * Created by over on 13.12.14.
@@ -20,6 +22,23 @@ object Assets {
     val gameWin = new Texture(Gdx.files.internal("textures/gamewin.png"))
     val road = new Texture(Gdx.files.internal("textures/road.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
+  }
+
+  object Fonts {
+    val mainGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/main.ttf"))
+    
+    val timerFontParam = new FreeTypeFontParameter()
+    timerFontParam.size = 44
+    val timerFrontFont = mainGenerator.generateFont(timerFontParam)
+    timerFrontFont.setColor(167f / 255, 128f / 255, 183f / 255, 1)
+
+    val otherFontParam = new FreeTypeFontParameter()
+    otherFontParam.size = 30
+
+    val greenFont = mainGenerator.generateFont(otherFontParam)
+    greenFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
+    val redFont = mainGenerator.generateFont(otherFontParam)
+    redFont.setColor(255f / 255, 0f / 255, 0f / 255, 1)
   }
 
 }

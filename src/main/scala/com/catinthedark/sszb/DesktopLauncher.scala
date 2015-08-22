@@ -8,7 +8,7 @@ import com.badlogic.gdx.backends.lwjgl.{LwjglApplication, LwjglApplicationConfig
 object DesktopLauncher {
   def main(args: Array[String]) {
     val conf = new LwjglApplicationConfiguration
-    conf.title = "save-me-dad-ultra"
+    conf.title = "YoBA"
     conf.height = 768
     conf.width = 1152
 
