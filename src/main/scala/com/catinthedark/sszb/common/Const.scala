@@ -14,6 +14,7 @@ object Const {
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
+    val spawnPlaceZ = 100
   }
 
   object Timing {
@@ -22,5 +23,29 @@ object Const {
 
   object Distance {
     val levelDistance = 42f
+  }
+  
+  object Difficulty {
+    val spawnDelta = 10
+
+    /**
+     * depends on distance, lvl and some random make decision to generate entities
+     */
+    def spawnRandom(lvl: Int, lvlDistance: Float, lastSpawnDistance: Float, seed: Int): (Boolean, Boolean, Boolean) = {
+      if (lvlDistance - lastSpawnDistance > spawnDelta) {
+        lvl match {
+          case _ => (true, true, true)
+        }
+      } else {
+        (false, false, false)
+      }
+    }
+
+    def mammySpeed(lvl: Int): Float = {
+      //TODO: depends on lvl calculate speed
+      10
+    }
+
+    val seedDivider = 10
   }
 }

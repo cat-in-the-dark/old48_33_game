@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
 import com.catinthedark.sszb.lib._
 
+import scala.collection.mutable
 import scala.util.Random
 
 /**
@@ -33,8 +34,8 @@ class SaveMeDadUltra extends Game {
     val t2 = keyAwait("Tutorial2", Assets.Textures.t2)
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
-
-    val shared: Shared = new Shared(0f, 0f, 0f)
+    
+    val shared: Shared = new Shared(0f, 0f, 1, 0f, mutable.ListBuffer())
     val day = new DayState(shared)
 
     val gameOver = keyAwait("GameOver", Assets.Textures.gameOver)
