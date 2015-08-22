@@ -26,6 +26,13 @@ object Const {
     val maxZViewPort = 110
     val minZViewPort = -10
     val maxSpeed = 5.0f
+    val mammyWidth = 0.3f // TODO: wtf?
+    val mammyDepth = 0.08f // TODO: wtf?
+    val playerWidth = 0.3f
+    val playerDepth = 0.08f
+    val roadRowWidth = 0.3f // TODO: wtf??? calculate width from real size
+
+    def roadRowPos(roadRow: Int): Float = roadRowWidth * roadRow + roadRowWidth / 2f
   }
 
   object Timing {
