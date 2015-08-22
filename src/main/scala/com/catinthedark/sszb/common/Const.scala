@@ -14,6 +14,8 @@ object Const {
     val distPos = new Vector2(900, 700)
     val sliderPos = new Vector2(476, 23)
     val pointerPos = new Vector2(466, 43)
+    val ZLetterPos = new Vector2(420, 3)
+    val XLetterPos = new Vector2(682, 3)
   }
 
   object Physics {

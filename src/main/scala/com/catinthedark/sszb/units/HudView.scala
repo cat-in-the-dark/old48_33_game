@@ -19,6 +19,11 @@ class HudView(shared: Shared) extends SimpleUnit {
         Assets.Fonts.timerFrontFont.draw(self, s"dist:${shared.lvlDistance.toLong}", UI.distPos.x, UI.distPos.y)
         self.draw(Assets.Textures.slider, UI.sliderPos.x, UI.sliderPos.y)
         self.draw(Assets.Textures.pointer, UI.pointerPos.x + shared.cursorPosition * sliderWidth, UI.pointerPos.y)
+        if (shared.cursorPosition > 0.5) {
+          self.draw(Assets.Textures.XLetter, UI.XLetterPos.x, UI.XLetterPos.y)
+        } else {
+          self.draw(Assets.Textures.ZLetter, UI.ZLetterPos.x, UI.ZLetterPos.y)
+        }
       }
     }
     
