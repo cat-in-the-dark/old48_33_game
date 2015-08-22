@@ -11,6 +11,8 @@ object Const {
   object UI {
     val screenSize = new Vector2(1152, 768)
     val timerPos = new Vector2(900, 740)
+    val sliderPos = new Vector2(476, 23)
+    val pointerPos = new Vector2(476, 43)
   }
 
   object Physics {

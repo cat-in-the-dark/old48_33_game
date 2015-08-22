@@ -13,6 +13,7 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
   val rightPedalPosition = 1.0f
   val centerPedalPosition = (rightPedalPosition - leftPedalPosition) / 2
   val scale: Float = 1.0f
+  val sliderWidth: Int = 200
   var currentPedalPosition: Float = leftPedalPosition
   var currentPedal: Int = Pedals.leftPedalKey
   var direction: Int = 1
@@ -42,6 +43,7 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
     if (currentPedalPosition > 1 || currentPedalPosition < 0) {
       direction *= -1
     }
-    println(String.format(s"$currentPedalPosition"))
+    shared.cursorPosition = currentPedalPosition * sliderWidth
+//    println(String.format(s"$currentPedalPosition"))
   }
 }
