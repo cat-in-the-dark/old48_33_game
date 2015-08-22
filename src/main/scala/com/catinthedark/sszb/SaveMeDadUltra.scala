@@ -40,7 +40,7 @@ class SaveMeDadUltra extends Game {
     val gameOver = keyAwait("GameOver", Assets.Textures.gameOver)
     val gameWin = keyAwait("GameWin", Assets.Textures.gameWin)
 
-    rm.addRoute(logo, anyway => t1)
+    rm.addRoute(logo, anyway => day)
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
     rm.addRoute(t3, anyway => t4)
