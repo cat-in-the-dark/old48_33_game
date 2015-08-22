@@ -9,9 +9,7 @@ import com.catinthedark.sszb.units._
  * Created by over on 18.04.15.
  */
 class DayState(shared: Shared) extends YieldUnit[Boolean] {
-  val control = new Control(shared) with LocalDeferred with Interval {
-    override val interval = 0.2f
-  }
+  val control = new Control(shared) with LocalDeferred
   val transmissionControl = new TransmissionControl(shared) with LocalDeferred
   control.onPedaled + (t => transmissionControl.onPedaled(t))
   var units: Seq[SimpleUnit] = Seq(

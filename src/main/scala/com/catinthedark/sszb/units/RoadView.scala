@@ -44,11 +44,11 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
         playerZ -= 0.01f
 
-      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-        playerX += 0.04f
-
-      if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-        playerX -= 0.04f
+//      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+//        playerX += 0.04f
+//
+//      if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+//        playerX -= 0.04f
 
       diff += delta * shared.speed * Const.Physics.RoadSpeedScale
 
@@ -87,10 +87,10 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
       manBuilder.setUVRange(0, 0, 1f, 1f)
       manBuilder.rect(
-        new Vector3(playerX + 0.5f, 0f, playerZ),
-        new Vector3(playerX, 0f, playerZ),
-        new Vector3(playerX, 1f, playerZ + dz),
-        new Vector3(playerX + 0.5f, 1f, playerZ + dz),
+        new Vector3(shared.playerX + 0.5f, 0f, playerZ),
+        new Vector3(shared.playerX, 0f, playerZ),
+        new Vector3(shared.playerX, 1f, playerZ + dz),
+        new Vector3(shared.playerX + 0.5f, 1f, playerZ + dz),
         new Vector3(0f, 0f, 1f))
       val model = modelBuilder.end();
 
@@ -99,7 +99,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       modelBatch.end()
     }
   }
-
 
   override def onActivate(): Unit = {}
 

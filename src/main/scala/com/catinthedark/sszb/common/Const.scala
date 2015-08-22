@@ -20,6 +20,7 @@ object Const {
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 100
     val RoadSpeedScale = 0.05f
+    val playerXSpeed = 0.06f
     val maxZViewPort = 110
     val minZViewPort = -10
     val maxSpeed = 5.0f
@@ -73,4 +74,5 @@ object Const {
     val leftPedalKey = Input.Keys.Z
     val rightPedalKey = Input.Keys.X
   }
+
 }

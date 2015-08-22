@@ -14,7 +14,9 @@ class Shared(var lvlTime: Float,
              var cursorPosition: Float,
              val creatures: mutable.ListBuffer[Creature],
              var lastSpawnDistance: Float = 0f,
-             var shouldStartTimer: Boolean = false) {
+             var shouldStartTimer: Boolean = false,
+             var playerX: Float = 0f
+              ) {
 
   def reset() = {
     lvlTime = 0f
@@ -25,6 +27,7 @@ class Shared(var lvlTime: Float,
     creatures.clear()
     lastSpawnDistance = 0f
     shouldStartTimer = false
+    playerX = 0
   }
 
   /**
@@ -39,5 +42,6 @@ class Shared(var lvlTime: Float,
     creatures.clear()
     lastSpawnDistance = 0f
     shouldStartTimer = false
+    playerX = 0
   }
 }

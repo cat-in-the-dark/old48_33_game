@@ -61,4 +61,9 @@ object Assets {
     redFont.setColor(255f / 255, 0f / 255, 0f / 255, 1)
   }
 
+
+  object Audios {
+    val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"))
+  }
+
 }
