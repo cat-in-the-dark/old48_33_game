@@ -12,9 +12,9 @@ abstract class CollisionControl(shared: Shared) extends SimpleUnit with Deferred
   val onDie = new Pipe[ListBuffer[Creature]]
 
   override def run(delta: Float): Unit = {
-    val playerRect = new Rectangle(shared.playerX, shared.playerZ, Const.Physics.playerWidth, Const.Physics.playerDepth)
+    val playerRect = new Rectangle(shared.playerX, shared.playerZ, Const.Physics.playerWidth * 0.8f, Const.Physics.playerDepth)
     val toDie = shared.creatures.filter(c => {
-      val creatureRect = new Rectangle(c.x, c.z, c.width, c.depth)
+      val creatureRect = new Rectangle(c.x+0.2f, c.z, c.width * 0.7f, c.depth)
       Intersector.intersectRectangles(playerRect, creatureRect, new Rectangle())
     })
 
