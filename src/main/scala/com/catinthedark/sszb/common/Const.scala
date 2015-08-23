@@ -2,6 +2,7 @@ package com.catinthedark.sszb.common
 
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.{Rectangle, Vector2}
+import com.catinthedark.sszb.Shared
 
 /**
  * Created by over on 03.01.15.
@@ -77,17 +78,18 @@ object Const {
       if (lvlDistance - lastSpawnDistance > spawnDelta) {
         lvl match {
           case 1 =>
-            if ((0 to 3).contains(seed)) (false, false, false)
-            else if ((4 to 5).contains(seed)) (true, false, false)
-            else if ((6 to 9).contains(seed)) (false, true, false)
+            if ((0 to 1).contains(seed)) (false, false, false)
+            else if ((2 to 3).contains(seed)) (true, false, false)
+            else if ((4 to 5).contains(seed)) (false, true, false)
             else (false, false, true)
           case 2 =>
             if ((0 to 1).contains(seed)) (false, false, false)
             else if ((2 to 3).contains(seed)) (true, false, false)
             else if ((4 to 5).contains(seed)) (false, true, false)
-            else if ((6 to 7).contains(seed)) (false, true, false)
-            else if ((6 to 7).contains(seed)) (true, true, false)
-            else (false, true, true)
+            else if ((6 to 7).contains(seed)) (false, false, true)
+            else if ((8 to 9).contains(seed)) (true, true, false)
+            else if ((10 to 11).contains(seed)) (false, true, true)
+            else (true, false, true)
           case _ => (false, true, false)
         }
       } else {
@@ -100,7 +102,13 @@ object Const {
       0.15f
     }
 
-    val seedDivider = 10
+    def seedDivider(lvl: Int) = {
+      lvl match {
+        case 1 => 8
+        case 2 => 14
+        case _ => 20
+      }
+    }
   }
 
   object Pedals {

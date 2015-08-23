@@ -56,7 +56,6 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       Assets.Audios.fall.play(Const.soundVolume)
     }
     shared.shouldStartTimer = true
-    println(s"$key")
   }
 
   def speedToFriction(speed: Float): Float = {
