@@ -52,7 +52,7 @@ object Const {
     val playerDepth = 0.08f
     val roadRowWidth = 0.6f // TODO: wtf??? calculate width from real size
 
-    val roadLeftBorderX = 0.9f
+    val roadLeftBorderX = 0.8f
     val roadRightBorderX = -1.4f
     val playerBorderTeleportationX = 0.2f
 

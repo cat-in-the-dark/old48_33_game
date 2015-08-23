@@ -22,7 +22,7 @@ class Shared(val records: RecordStorage[Record],
              var shouldStartTimer: Boolean = false,
              var playerX: Float = 0f,
              var isFalling: Boolean = false,
-             var playerZ: Float = 0.2f,
+             var playerZ: Float = 0.05f,
              var trash: mutable.ListBuffer[Creature]
               ) {
 
@@ -38,7 +38,7 @@ class Shared(val records: RecordStorage[Record],
     shouldStartTimer = false
     isFalling = false
     playerX = 0
-    playerZ = 0.2f
+    playerZ = 0.05f
     trash.clear()
   }
 
@@ -57,7 +57,7 @@ class Shared(val records: RecordStorage[Record],
     shouldStartTimer = false
     isFalling = false
     playerX = 0
-    playerZ = 0.2f
+    playerZ = 0.05f
     trash.clear()
     
     preset()
