@@ -1,13 +1,16 @@
 package com.catinthedark.sszb
 
 import com.catinthedark.sszb.entity.Creatures.Creature
+import com.catinthedark.sszb.lib.records.RecordStorage
+import com.catinthedark.sszb.records.Record
 
 import scala.collection.mutable
 
 /**
  * Created by over on 18.04.15.
  */
-class Shared(var lvlTime: Float,
+class Shared(val records: RecordStorage[Record],
+             var lvlTime: Float,
              var lvlDistance: Float,
              var lvl: Int,
              var speed: Float,

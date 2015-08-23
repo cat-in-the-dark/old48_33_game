@@ -55,6 +55,10 @@ object Assets {
     val timerFrontFont = mainGenerator.generateFont(timerFontParam)
     timerFrontFont.setColor(167f / 255, 128f / 255, 183f / 255, 1)
 
+    timerFontParam.size = 30
+    val highScoreFont = mainGenerator.generateFont(timerFontParam)
+    highScoreFont.setColor(167f / 255, 128f / 255, 183f / 255, 1)
+
     val otherFontParam = new FreeTypeFontParameter()
     otherFontParam.size = 30
 
@@ -68,7 +72,7 @@ object Assets {
   object Audios {
     val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"))
     val bgm = Gdx.audio.newMusic(Gdx.files.internal("sfx/bgm.mp3"))
-    bgm.setVolume(0f)
+    bgm.setVolume(0.2f)
     bgm.setLooping(true)
   }
 

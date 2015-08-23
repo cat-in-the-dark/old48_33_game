@@ -43,7 +43,6 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
     if (Gdx.input.isKeyPressed(Input.Keys.L))
       println("L pressed")
 
-    println("here")
     if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
       shared.playerX -= Const.Physics.playerXSpeed
 
