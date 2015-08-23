@@ -49,7 +49,7 @@ object Assets {
       manFallTexture, 200, 200)
     
     val tree = new Texture(Gdx.files.internal("textures/tree.png"))
-    val bush = new Texture(Gdx.files.internal("textures/tree.png"))
+    val bush = new Texture(Gdx.files.internal("textures/bush.png"))
     val lampRight = new Texture(Gdx.files.internal("textures/lamp_post.png"))
     val sign = new Texture(Gdx.files.internal("textures/sign.png"))
   }

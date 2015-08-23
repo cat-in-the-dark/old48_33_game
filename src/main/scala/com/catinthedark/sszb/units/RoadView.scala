@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.{GL20, _}
 import com.badlogic.gdx.math.Vector3
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.Creatures
-import com.catinthedark.sszb.entity.Creatures.{Tree, Lamp, Sign}
+import com.catinthedark.sszb.entity.Creatures.{Bush, Tree, Lamp, Sign}
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.lib._
 
@@ -127,7 +127,8 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
           case s: Sign => Assets.Textures.sign
           case l: Lamp => Assets.Textures.lampRight
           case t: Tree => Assets.Textures.tree
-          case _ => return
+          case b: Bush => Assets.Textures.bush
+          case _ => Assets.Textures.sign // in other wonderful cases generate sign!
         }
         
         val trashBuilder = modelBuilder.part("trash", GL20.GL_TRIANGLES,
