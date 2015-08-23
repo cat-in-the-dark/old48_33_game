@@ -51,6 +51,7 @@ object Const {
 
   object Difficulty {
     val spawnDelta = 1
+    val fallTimeout = 2.0f
 
     /**
      * depends on distance, lvl and some random make decision to generate entities

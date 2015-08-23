@@ -1,5 +1,6 @@
 package com.catinthedark.sszb.units
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.{Input, Gdx}
 import com.badlogic.gdx.graphics.VertexAttributes.Usage
 import com.badlogic.gdx.graphics.g3d.attributes.{DepthTestAttribute, BlendingAttribute, TextureAttribute, ColorAttribute}
@@ -33,6 +34,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
     cam.update()
     val material = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
     val manMaterial = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
+    var animationDelta = 0.0f
 
 
     val dz = 0.2f
@@ -70,11 +72,23 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         new Vector3(3f, 0f, 1.7f),
         new Vector3(0f, 1f, 0f))
 
-      val manTexture = if (shared.cursorPosition > 0.5f)
-        Assets.Textures.manFrames(0)(0)
-      else
-        Assets.Textures.manFrames(0)(1)
-      
+      var manTexture: TextureRegion = null
+      if (shared.isFalling) {
+        animationDelta += delta
+        manTexture = Assets.Animations.manFalling.getKeyFrame(animationDelta)
+        if (animationDelta > 1) {
+          shared.isFalling = false
+        }
+      } else {
+        animationDelta = 0
+        manTexture = if (shared.speed == 0)
+          Assets.Textures.manFrames(0)(2)
+        else if (shared.cursorPosition > 0.5f)
+          Assets.Textures.manFrames(0)(0)
+        else
+          Assets.Textures.manFrames(0)(1)
+      }
+
       val tetkaTexture = Assets.Animations.tetka.getKeyFrame(stateTime)
       val tetkaBuilder = modelBuilder.part("tetka", GL20.GL_TRIANGLES,
         Usage.Position | Usage.Normal | Usage.TextureCoordinates,
@@ -82,7 +96,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
           TextureAttribute.createDiffuse(tetkaTexture),
           new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
           new DepthTestAttribute(GL20.GL_ALWAYS)))
-      
+
       tetkaBuilder.setUVRange(0, 0, 1f, 1f)
       shared.creatures.sorted.foreach(c => {
         tetkaBuilder.rect(
@@ -92,8 +106,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
           new Vector3(c.x + c.width, 1f, c.z + dz),
           new Vector3(0f, 0f, 1f))
       })
-      
-      
+
       val manBuilder = modelBuilder.part("man", GL20.GL_TRIANGLES,
         Usage.Position | Usage.Normal | Usage.TextureCoordinates,
         new Material(TextureAttribute.createDiffuse(manTexture)

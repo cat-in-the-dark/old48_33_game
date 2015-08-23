@@ -20,6 +20,7 @@ class Shared(val records: RecordStorage[Record],
              var palkaPos: Float = -1.0f,
              var shouldStartTimer: Boolean = false,
              var playerX: Float = 0f,
+             var isFalling: Boolean = false,
              var playerZ: Float = 0.2f
               ) {
 
@@ -33,6 +34,7 @@ class Shared(val records: RecordStorage[Record],
     lastSpawnDistance = 0f
     palkaPos = -1.0f
     shouldStartTimer = false
+    isFalling = false
     playerX = 0
     playerZ = 0.2f
   }
@@ -50,6 +52,7 @@ class Shared(val records: RecordStorage[Record],
     lastSpawnDistance = 0f
     palkaPos = -1.0f
     shouldStartTimer = false
+    isFalling = false
     playerX = 0
     playerZ = 0.2f
   }

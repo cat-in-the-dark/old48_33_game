@@ -51,6 +51,7 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
         }
       }
     } else {
+      shared.isFalling = true
       shared.speed = 0
       lastPedal = 0
       shared.palkaPos = leftPedalPosition
