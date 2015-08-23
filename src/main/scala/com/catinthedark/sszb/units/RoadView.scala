@@ -16,6 +16,8 @@ import com.catinthedark.sszb.lib._
  * Created by over on 02.01.15.
  */
 abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
+  var stateTime = 0f
+  
   val roadLayer = new Layer {
     var diff = 0f
     val modelBuilder = new ModelBuilder()
@@ -23,15 +25,17 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
     val aspectRatio = 1152.toFloat / 768.toFloat
 
-    val cam = new PerspectiveCamera(160, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-    cam.position.set(0f, 1f, 0f);
-    cam.lookAt(0, 0, 6f);
-    cam.near = 0f;
-    cam.far = 100f;
-    cam.update();
+    val cam = new PerspectiveCamera(160, Gdx.graphics.getWidth(), Gdx.graphics.getHeight())
+    cam.position.set(0f, 1f, 0f)
+    cam.lookAt(0, 0, 6f)
+    cam.near = 0f
+    cam.far = 100f
+    cam.update()
     val material = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
     val manMaterial = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
 
+
+    val dz = 0.2f
 
     override def render(delta: Float): Unit = {
       if (Gdx.input.isKeyPressed(Input.Keys.UP))
@@ -70,7 +74,26 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         Assets.Textures.manFrames(0)(0)
       else
         Assets.Textures.manFrames(0)(1)
-
+      
+      val tetkaTexture = Assets.Animations.tetka.getKeyFrame(stateTime)
+      val tetkaBuilder = modelBuilder.part("tetka", GL20.GL_TRIANGLES,
+        Usage.Position | Usage.Normal | Usage.TextureCoordinates,
+        new Material(
+          TextureAttribute.createDiffuse(tetkaTexture),
+          new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+          new DepthTestAttribute(GL20.GL_ALWAYS)))
+      
+      tetkaBuilder.setUVRange(0, 0, 1f, 1f)
+      shared.creatures.sorted.foreach(c => {
+        tetkaBuilder.rect(
+          new Vector3(c.x + c.width, 0f, c.z),
+          new Vector3(c.x, 0f, c.z),
+          new Vector3(c.x, 1f, c.z + dz),
+          new Vector3(c.x + c.width, 1f, c.z + dz),
+          new Vector3(0f, 0f, 1f))
+      })
+      
+      
       val manBuilder = modelBuilder.part("man", GL20.GL_TRIANGLES,
         Usage.Position | Usage.Normal | Usage.TextureCoordinates,
         new Material(TextureAttribute.createDiffuse(manTexture)
@@ -79,8 +102,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         )
       )
 
-      val dz = 0.2f
-
       manBuilder.setUVRange(0, 0, 1f, 1f)
       manBuilder.rect(
         new Vector3(shared.playerX + 0.5f, 0f, shared.playerZ),
@@ -88,19 +109,25 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         new Vector3(shared.playerX, 1f, shared.playerZ + dz),
         new Vector3(shared.playerX + 0.5f, 1f, shared.playerZ + dz),
         new Vector3(0f, 0f, 1f))
-      val model = modelBuilder.end();
+      
+      val model = modelBuilder.end()
 
-      modelBatch.begin(cam);
-      modelBatch.render(new ModelInstance(model));
+      modelBatch.begin(cam)
+      modelBatch.render(new ModelInstance(model))
       modelBatch.end()
     }
   }
 
-  override def onActivate(): Unit = {}
+  override def onActivate(): Unit = {
+    stateTime = 0f
+  }
 
-  override def onExit(): Unit = {}
+  override def onExit(): Unit = {
+    stateTime = 0f
+  }
 
   override def run(delta: Float) = {
+    stateTime += delta
     roadLayer.render(delta)
   }
 }

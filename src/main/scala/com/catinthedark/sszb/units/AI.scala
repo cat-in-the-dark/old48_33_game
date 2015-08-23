@@ -16,19 +16,19 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred {
     val (needX1, needX2, needX3) = Difficulty.spawnRandom(shared.lvl, shared.lvlDistance, shared.lastSpawnDistance, seed)
     
     if (needX1) {
-      val c = Creatures.create(shared, Const.Physics.roadRowPos(0), Const.Physics.spawnPlaceZ)
+      val c = Creatures.create(shared, Const.Physics.roadRowPos(-1), Const.Physics.spawnPlaceZ)
       shared.creatures += c
       shared.lastSpawnDistance = shared.lvlDistance
     }
     
     if (needX2) {
-      val c = Creatures.create(shared, Const.Physics.roadRowPos(1), Const.Physics.spawnPlaceZ)
+      val c = Creatures.create(shared, Const.Physics.roadRowPos(0), Const.Physics.spawnPlaceZ)
       shared.creatures += c
       shared.lastSpawnDistance = shared.lvlDistance
     }
     
     if (needX3) {
-      val c = Creatures.create(shared, Const.Physics.roadRowPos(2), Const.Physics.spawnPlaceZ)
+      val c = Creatures.create(shared, Const.Physics.roadRowPos(1), Const.Physics.spawnPlaceZ)
       shared.creatures += c
       shared.lastSpawnDistance = shared.lvlDistance
     }

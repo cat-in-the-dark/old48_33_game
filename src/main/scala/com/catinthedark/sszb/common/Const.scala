@@ -7,6 +7,9 @@ import com.badlogic.gdx.math.{Rectangle, Vector2}
  * Created by over on 03.01.15.
  */
 object Const {
+  val soundVolume: Float = 0f//0.8f
+  val musicVolume: Float = 0f//0.2f
+
 
   object UI {
     val screenSize = new Vector2(1152, 768)
@@ -23,19 +26,19 @@ object Const {
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
-    val spawnPlaceZ = 100
+    val spawnPlaceZ = 1.7f
     val RoadSpeedScale = 0.05f
     val playerXSpeed = 0.06f
-    val maxZViewPort = 110
-    val minZViewPort = -10
+    val maxZViewPort = 2.0f
+    val minZViewPort = -0.3f
     val maxSpeed = 5.0f
     val mammyWidth = 0.3f // TODO: wtf?
     val mammyDepth = 0.08f // TODO: wtf?
     val playerWidth = 0.3f
     val playerDepth = 0.08f
-    val roadRowWidth = 0.3f // TODO: wtf??? calculate width from real size
+    val roadRowWidth = 0.6f // TODO: wtf??? calculate width from real size
 
-    def roadRowPos(roadRow: Int): Float = roadRowWidth * roadRow + roadRowWidth / 2f
+    def roadRowPos(roadRow: Int): Float = -roadRowWidth * roadRow - roadRowWidth / 2f
   }
 
   object Timing {
@@ -76,7 +79,7 @@ object Const {
 
     def mammySpeed(lvl: Int): Float = {
       //TODO: depends on lvl calculate speed
-      1
+      0.3f
     }
 
     val seedDivider = 10

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.graphics.g2d.{Animation, TextureRegion}
 import com.badlogic.gdx.{Gdx, utils}
+import com.catinthedark.sszb.common.Const
 
 /**
  * Created by over on 13.12.14.
@@ -35,9 +36,13 @@ object Assets {
 
     val manTexture = new Texture(Gdx.files.internal("textures/man.png"))
     manTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+    
+    val tetka = new Texture(Gdx.files.internal("textures/mom.png"))
+    tetka.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
     val manFrames = TextureRegion.split(
       manTexture, 120, 200)
+    val tetkaFrames = TextureRegion.split(tetka, 120, 200)
   }
 
   object Animations {
@@ -48,6 +53,7 @@ object Assets {
     }
 
     val man = loopingAnimation(Textures.manFrames, 0.01f, (0, 0), (0, 1))
+    val tetka = loopingAnimation(Textures.tetkaFrames, 0.3f, (0,0), (0, 1))
   }
 
   object Fonts {
@@ -78,7 +84,7 @@ object Assets {
     val pedal1 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal1.wav"))
     val pedal2 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal2.wav"))
     val bgm = Gdx.audio.newMusic(Gdx.files.internal("sfx/bgm.mp3"))
-    bgm.setVolume(0.2f)
+    bgm.setVolume(Const.musicVolume)
     bgm.setLooping(true)
   }
 
