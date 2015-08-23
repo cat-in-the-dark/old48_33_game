@@ -12,7 +12,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred {
   val rand = new Random()
   
   override def run(delta: Float): Unit = {
-    val seed = rand.nextInt() % Difficulty.seedDivider
+    val seed = rand.nextInt(Difficulty.seedDivider(shared.lvl)) 
     val (needX1, needX2, needX3) = Difficulty.spawnRandom(shared.lvl, shared.lvlDistance, shared.lastSpawnDistance, seed)
     
     if (needX1) {
