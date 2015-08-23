@@ -41,15 +41,16 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       if (key != lastPedal || crossedCenter) {
         shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
         lastPedal = key
+        shared.palkaPos = currentPedalPosition
         crossedCenter = false
       }
     } else {
       shared.speed = 0
       lastPedal = 0
+      shared.palkaPos = leftPedalPosition
       currentPedalPosition = leftPedalPosition
     }
     shared.shouldStartTimer = true
-    shared.palkaPos = currentPedalPosition
     println(s"$key")
   }
 
