@@ -14,8 +14,11 @@ class LooseControl(shared: Shared) extends SimpleUnit {
       c.z < Const.Physics.minZViewPort || c.z > Const.Physics.maxZViewPort
     }
     
-    if (missed.nonEmpty) println("Loose control")
+    val missedTrash = shared.trash.filter { t => 
+      t.z < Const.Physics.minZViewPort || t.z > Const.Physics.maxZViewPort
+    }
     
     shared.creatures --= missed
+    shared.trash --= missedTrash
   }
 }

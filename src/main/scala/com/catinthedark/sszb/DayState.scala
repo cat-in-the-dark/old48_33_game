@@ -21,7 +21,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     new HudView(shared),
     transmissionControl,
     new LooseControl(shared),
-    new CollisionControl(shared) with LocalDeferred)
+    new CollisionControl(shared) with LocalDeferred,
+    new TrashGenerator(shared))
   
   override def toString = "Day"
 

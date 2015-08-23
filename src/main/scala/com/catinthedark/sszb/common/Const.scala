@@ -25,6 +25,15 @@ object Const {
   }
 
   object Physics {
+    val lampWidth: Float = 0.3f
+    val lampDepth: Float = 0.1f
+
+    val signWidth: Float = 0.3f
+    val signDepth: Float = 0.1f
+    
+    val treeWidth: Float = 0.3f
+    val treeDepth: Float = 0.1f
+
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 1.7f
     val RoadSpeedScale = 0.05f

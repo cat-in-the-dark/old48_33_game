@@ -47,6 +47,11 @@ object Assets {
     val manFallTexture = new Texture(Gdx.files.internal("textures/man_fall.png"))
     val manFallFrames = TextureRegion.split(
       manFallTexture, 200, 200)
+    
+    val tree = new Texture(Gdx.files.internal("textures/tree.png"))
+    val bush = new Texture(Gdx.files.internal("textures/tree.png"))
+    val lampRight = new Texture(Gdx.files.internal("textures/lamp_post.png"))
+    val sign = new Texture(Gdx.files.internal("textures/sign.png"))
   }
 
   object Animations {

@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g3d.{Model, Material, ModelBatch, ModelInstance
 import com.badlogic.gdx.graphics.{GL20, _}
 import com.badlogic.gdx.math.Vector3
 import com.catinthedark.sszb.common.Const
+import com.catinthedark.sszb.entity.Creatures
+import com.catinthedark.sszb.entity.Creatures.{Tree, Lamp, Sign}
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.lib._
 
@@ -38,6 +40,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
 
     val dz = 0.2f
+    val dzTrash = 0.15f
 
     override def render(delta: Float): Unit = {
       if (Gdx.input.isKeyPressed(Input.Keys.UP))
@@ -122,6 +125,40 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         new Vector3(shared.playerX, 1f, shared.playerZ + dz),
         new Vector3(shared.playerX + 0.5f, 1f, shared.playerZ + dz),
         new Vector3(0f, 0f, 1f))
+
+      /**
+       * TRASH SEGMENT START
+       */
+      
+      shared.trash.sorted.foreach(t => {
+        val trashTexture = t match {
+          case s: Sign => Assets.Textures.sign
+          case l: Lamp => Assets.Textures.lampRight
+          case t: Tree => Assets.Textures.tree
+          case _ => return
+        }
+        
+        val trashBuilder = modelBuilder.part("trash", GL20.GL_TRIANGLES,
+          Usage.Position | Usage.Normal | Usage.TextureCoordinates,
+          new Material(
+            TextureAttribute.createDiffuse(trashTexture),
+            new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
+            , new DepthTestAttribute(GL20.GL_ALWAYS)
+          )
+        )
+
+        trashBuilder.setUVRange(0, 0, 1f, 1f)
+        trashBuilder.rect(
+          new Vector3(t.x + t.width, 0f, t.z),
+          new Vector3(t.x, 0f, t.z),
+          new Vector3(t.x, 1f, t.z + dzTrash),
+          new Vector3(t.x + t.width, 1f, t.z + dzTrash),
+          new Vector3(0f, 0f, 1f))
+      })
+
+      /**
+       * TRASH SEGMENT END
+       */
       
       val model = modelBuilder.end()
 
