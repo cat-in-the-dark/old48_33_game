@@ -41,6 +41,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
     val dz = 0.2f
     val dzTrash = 0.15f
+    val dwidth = 2.5f
 
     override def render(delta: Float): Unit = {
       if (Gdx.input.isKeyPressed(Input.Keys.UP))
@@ -48,12 +49,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
       if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
         shared.playerZ -= 0.01f
-
-//      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-//        playerX += 0.04f
-//
-//      if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-//        playerX -= 0.04f
 
       diff += delta * shared.speed * Const.Physics.RoadSpeedScale
 
@@ -79,9 +74,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       if (shared.isFalling) {
         animationDelta += delta
         manTexture = Assets.Animations.manFalling.getKeyFrame(animationDelta)
-        if (animationDelta > 1) {
-          shared.isFalling = false
-        }
       } else {
         animationDelta = 0
         manTexture = if (shared.speed == 0)
@@ -103,10 +95,10 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       tetkaBuilder.setUVRange(0, 0, 1f, 1f)
       shared.creatures.sorted.foreach(c => {
         tetkaBuilder.rect(
-          new Vector3(c.x + c.width, 0f, c.z),
+          new Vector3(c.x + c.width * dwidth, 0f, c.z),
           new Vector3(c.x, 0f, c.z),
           new Vector3(c.x, 1f, c.z + dz),
-          new Vector3(c.x + c.width, 1f, c.z + dz),
+          new Vector3(c.x + c.width * dwidth, 1f, c.z + dz),
           new Vector3(0f, 0f, 1f))
       })
 
@@ -120,10 +112,10 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
       manBuilder.setUVRange(0, 0, 1f, 1f)
       manBuilder.rect(
-        new Vector3(shared.playerX + 0.5f, 0f, shared.playerZ),
+        new Vector3(shared.playerX + 0.7f, 0f, shared.playerZ),
         new Vector3(shared.playerX, 0f, shared.playerZ),
         new Vector3(shared.playerX, 1f, shared.playerZ + dz),
-        new Vector3(shared.playerX + 0.5f, 1f, shared.playerZ + dz),
+        new Vector3(shared.playerX + 0.7f, 1f, shared.playerZ + dz),
         new Vector3(0f, 0f, 1f))
 
       /**

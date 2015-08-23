@@ -55,24 +55,39 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
   var rightAllowed = true
 
   override def run(delta: Float) = {
-    if (rightAllowed && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-      shared.playerX -= Const.Physics.playerXSpeed
-      if (shared.playerX < Const.Physics.roadRightBorderX) {
-        rightAllowed = false
-        Assets.Audios.border.play(Const.soundVolume)
-        shared.speed /= 2
-        shared.playerX += Const.Physics.playerBorderTeleportationX
+
+    if (!shared.isFalling) {
+      if (rightAllowed && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (shared.speed != 0) {
+          shared.playerX -= Const.Physics.playerXSpeed
+        } else {
+          shared.playerX -= Const.Physics.playerXSpeed / 5
+        }
+        if (shared.playerX < Const.Physics.roadRightBorderX) {
+          rightAllowed = false
+          Assets.Audios.border.play(Const.soundVolume)
+          shared.speed /= 2
+          shared.playerX += Const.Physics.playerBorderTeleportationX
+        }
+      }
+
+      if (leftAllowed && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (shared.speed != 0) {
+          shared.playerX += Const.Physics.playerXSpeed
+        } else {
+          shared.playerX += Const.Physics.playerXSpeed / 5
+        }
+        if (shared.playerX > Const.Physics.roadLeftBorderX) {
+          leftAllowed = false
+          Assets.Audios.border.play(Const.soundVolume)
+          shared.speed /= 2
+          shared.playerX -= Const.Physics.playerBorderTeleportationX
+        }
       }
     }
 
-    if (leftAllowed && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-      shared.playerX += Const.Physics.playerXSpeed
-      if (shared.playerX > Const.Physics.roadLeftBorderX) {
-        leftAllowed = false
-        Assets.Audios.border.play(Const.soundVolume)
-        shared.speed /= 2
-        shared.playerX -= Const.Physics.playerBorderTeleportationX
-      }
+    if (Gdx.input.isKeyPressed(Input.Keys.L)) {
+      Assets.Audios.bgm.setVolume(Assets.Audios.bgm.getVolume + 0.01f)
     }
   }
 }

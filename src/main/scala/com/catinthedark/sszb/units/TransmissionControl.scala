@@ -52,11 +52,8 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       }
     } else {
       shared.isFalling = true
-      shared.speed = 0
-      lastPedal = 0
-      shared.palkaPos = leftPedalPosition
+      defer(Const.Timing.fallTime, () => shared.isFalling = false)
       Assets.Audios.fall.play(Const.soundVolume)
-      currentPedalPosition = leftPedalPosition
     }
     shared.shouldStartTimer = true
     println(s"$key")
@@ -75,10 +72,16 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
     lastPedalPosition = currentPedalPosition
     shared.speed -= speedToFriction(shared.speed) * delta
 
+    if (shared.isFalling) {
+      shared.speed -= 5* delta
+    }
     if (shared.speed <= 0.3) {
       shared.speed = 0
       currentPedalPosition = leftPedalPosition
       direction = 1
+      lastPedal = 0
+      shared.palkaPos = leftPedalPosition
+      currentPedalPosition = leftPedalPosition
     } else if (shared.speed >= Physics.maxSpeed) {
       shared.speed = Physics.maxSpeed
     }

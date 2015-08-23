@@ -50,12 +50,13 @@ object Const {
     val roadLeftBorderX = 0.9f
     val roadRightBorderX = -1.4f
     val playerBorderTeleportationX = 0.2f
-    
+
     def roadRowPos(roadRow: Int): Float = -roadRowWidth * roadRow - roadRowWidth / 2f
   }
 
   object Timing {
     val levelTime = 5f
+    val fallTime = 0.85f
   }
 
   object Distance {

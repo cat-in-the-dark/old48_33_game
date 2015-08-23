@@ -19,6 +19,7 @@ class NewRecordState(val shared: Shared) extends Stub("NewRecordState") {
   var needUsername = false
 
   override def onActivate(): Unit = {
+    println("time:", shared.lvlTime.toInt)
     needUsername = shared.records.isNewRecord(Record(shared.lvlTime.toInt, "dummy"))
 
     Gdx.input.setInputProcessor(new InputAdapter {

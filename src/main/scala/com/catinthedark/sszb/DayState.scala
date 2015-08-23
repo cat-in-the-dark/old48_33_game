@@ -12,6 +12,9 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   val control = new Control(shared) with LocalDeferred
   val transmissionControl = new TransmissionControl(shared) with LocalDeferred
   control.onPedaled + (t => transmissionControl.onPedaled(t))
+  val collision = new CollisionControl(shared) with LocalDeferred
+
+  //collision.onDie + (deathNode => )
   var units: Seq[SimpleUnit] = Seq(
     control,
     new AI(shared) with LocalDeferred,
@@ -21,13 +24,18 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     new HudView(shared),
     transmissionControl,
     new LooseControl(shared),
-    new CollisionControl(shared) with LocalDeferred,
-    new TrashGenerator(shared))
-  
+    new TrashGenerator(shared),
+    collision,
+    new AudioDirector(shared))
+
   override def toString = "Day"
 
   override def onActivate(): Unit = {
+    val time = shared.lvlTime
+    val lvl = shared.lvl
     shared.prepareGame()
+    shared.lvlTime = time
+    shared.lvl = lvl
     units.foreach(_.onActivate())
     Assets.Audios.bgm.play()
   }
