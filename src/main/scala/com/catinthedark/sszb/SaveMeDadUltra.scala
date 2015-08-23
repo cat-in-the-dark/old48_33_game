@@ -74,14 +74,14 @@ class SaveMeDadUltra extends Game {
     rm.addRoute(dayTwo, res => {
       res match {
         case true =>
-          newRecord
+          gameWin
         case false =>
           shared.reset()
           logo
       }
     })
-    rm.addRoute(newRecord, anyway => gameWin)
-    rm.addRoute(gameWin, anyway => {
+    rm.addRoute(gameWin, anyway => newRecord)
+    rm.addRoute(newRecord, anyway => {
       shared.reset()
       menu
     })
