@@ -53,13 +53,27 @@ class SaveMeDadUltra extends Game {
     rm.addRoute(t2, anyway => t3)
     rm.addRoute(t3, anyway => t4)
     rm.addRoute(t4, anyway => dayOne)
-    rm.addRoute(dayOne, anyway => {
-      shared.lvl = 2
-      t5
+    rm.addRoute(dayOne, res => {
+      res match {
+        case true =>
+          shared.lvl = 2
+          t5
+        case false =>
+          shared.reset()
+          logo
+      }
     })
     rm.addRoute(t5, anyway => dayTwo)
 
-    rm.addRoute(dayTwo, anyway => newRecord)
+    rm.addRoute(dayTwo, res => {
+      res match {
+        case true =>
+          newRecord
+        case false =>
+          shared.reset()
+          logo
+      }
+    })
     rm.addRoute(newRecord, anyway => gameWin)
     rm.addRoute(gameWin, anyway => {
       shared.reset()
