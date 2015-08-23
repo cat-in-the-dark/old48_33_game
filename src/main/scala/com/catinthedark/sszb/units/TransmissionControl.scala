@@ -66,12 +66,12 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
     lastPedalPosition = currentPedalPosition
     shared.speed -= speedToFriction(shared.speed) * delta
 
-    if (shared.speed <= 0.0001) {
+    if (shared.speed <= 0.3) {
       shared.speed = 0
       currentPedalPosition = leftPedalPosition
       direction = 1
-    } else if (shared.speed >= 10.0f) {
-      shared.speed = 10.0f
+    } else if (shared.speed >= Physics.maxSpeed) {
+      shared.speed = Physics.maxSpeed
     }
     if (currentPedalPosition > 1) {
       direction *= -1
