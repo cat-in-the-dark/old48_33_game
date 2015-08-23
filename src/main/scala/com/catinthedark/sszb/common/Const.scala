@@ -17,6 +17,8 @@ object Const {
     val palkaPos = new Vector2(474, 20)
     val ZLetterPos = new Vector2(420, 3)
     val XLetterPos = new Vector2(682, 3)
+    val speedometerPos = new Vector2(950, 3)
+    val speedPalkaPos = new Vector2(1008, 61)
   }
 
   object Physics {
