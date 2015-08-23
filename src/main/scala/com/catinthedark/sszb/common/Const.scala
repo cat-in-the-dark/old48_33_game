@@ -43,7 +43,7 @@ object Const {
     val maxSpeed = 5.0f
     val mammyWidth = 0.3f // TODO: wtf?
     val mammyDepth = 0.08f // TODO: wtf?
-    val playerWidth = 0.3f
+    val playerWidth = 0.7f
     val playerDepth = 0.08f
     val roadRowWidth = 0.6f // TODO: wtf??? calculate width from real size
 

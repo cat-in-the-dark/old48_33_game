@@ -26,9 +26,16 @@ object Creatures {
     var speed: Float
     var width: Float
     var depth: Float
-    
+
     override def compare(that: Creature): Int = that.z.compareTo(z)
   }
+
+  case class Man(var x: Float,
+                 var z: Float,
+                 var speed: Float,
+                 var width: Float = Const.Physics.playerWidth,
+                 var depth: Float = Const.Physics.playerDepth)
+    extends Creature
 
   case class Mammy(var x: Float,
                    var z: Float,
