@@ -67,6 +67,8 @@ class NewRecordState(val shared: Shared) extends Stub("NewRecordState") {
 
   override def onExit(): Unit = {
     println("records ->", shared.records.all)
+    done = false
+    username = "YoBA"
     Gdx.input.setInputProcessor(null)
   }
 }

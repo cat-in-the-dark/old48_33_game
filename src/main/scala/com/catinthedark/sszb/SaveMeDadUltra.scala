@@ -46,7 +46,7 @@ class SaveMeDadUltra extends Game {
     val newRecord = new NewRecordState(shared)
     val gameWin = new GameWin(shared)
 
-    rm.addRoute(logo, anyway => gameWin)
+    rm.addRoute(logo, anyway => day)
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
     rm.addRoute(t3, anyway => t4)
