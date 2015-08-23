@@ -19,6 +19,10 @@ object Creatures {
   def createTree(shared: Shared, x: Float, z: Float): Creature = {
     new Tree(x, z, 0f, Const.Physics.treeWidth, Const.Physics.treeDepth)
   }
+  
+  def createBush(shared: Shared, x: Float, z: Float): Creature = {
+    new Bush(x, z, 0f, Const.Physics.bushWidth, Const.Physics.bushDepth)
+  }
 
   sealed trait Creature extends Ordered[Creature] {
     var x: Float
@@ -52,6 +56,13 @@ object Creatures {
     extends Creature
 
   case class Tree(var x: Float,
+                  var z: Float,
+                  var speed: Float,
+                  var width: Float,
+                  var depth: Float)
+    extends Creature
+
+  case class Bush(var x: Float,
                   var z: Float,
                   var speed: Float,
                   var width: Float,
