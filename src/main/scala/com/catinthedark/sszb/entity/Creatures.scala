@@ -8,12 +8,13 @@ object Creatures {
     new Mammy(x, z, Const.Difficulty.mammySpeed(shared.lvl), Const.Physics.mammyWidth, Const.Physics.mammyDepth)
   }
   
-  sealed trait Creature {
+  sealed trait Creature extends Ordered[Creature] {
     var x: Float
     var z: Float
     var speed: Float
     var width: Float // X
     var depth: Float // Z
+    override def compare(that: Creature): Int = that.z.compareTo(z)
   }
 
   case class Mammy(var x: Float, 

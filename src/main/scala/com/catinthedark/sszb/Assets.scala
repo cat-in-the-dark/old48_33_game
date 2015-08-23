@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.graphics.g2d.{Animation, TextureRegion}
 import com.badlogic.gdx.{Gdx, utils}
+import com.catinthedark.sszb.common.Const
 
 /**
  * Created by over on 13.12.14.
@@ -36,8 +37,16 @@ object Assets {
     val manTexture = new Texture(Gdx.files.internal("textures/man.png"))
     manTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
+    val tetka = new Texture(Gdx.files.internal("textures/mom.png"))
+    tetka.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
     val manFrames = TextureRegion.split(
       manTexture, 120, 200)
+    val tetkaFrames = TextureRegion.split(tetka, 120, 200)
+    
+    val manFallTexture = new Texture(Gdx.files.internal("textures/man_fall.png"))
+    val manFallFrames = TextureRegion.split(
+      manFallTexture, 200, 200)
   }
 
   object Animations {
@@ -47,7 +56,15 @@ object Assets {
       new Animation(delay, array, Animation.PlayMode.LOOP)
     }
 
+    private def normalAnimation(frames: Array[Array[TextureRegion]], delay: Float, frameIndexes: (Int, Int)*): Animation = {
+      val array = new utils.Array[TextureRegion]
+      frameIndexes.foreach(i => array.add(frames(i._1)(i._2)))
+      new Animation(delay, array, Animation.PlayMode.NORMAL)
+    }
+
     val man = loopingAnimation(Textures.manFrames, 0.01f, (0, 0), (0, 1))
+    val tetka = loopingAnimation(Textures.tetkaFrames, 0.3f, (0,0), (0, 1))
+    val manFalling = normalAnimation(Textures.manFallFrames, 0.1f, (0,0), (0,1), (0,2))
   }
 
   object Fonts {
@@ -81,7 +98,7 @@ object Assets {
     val border = Gdx.audio.newSound(Gdx.files.internal("sfx/border.wav"))
 
     val bgm = Gdx.audio.newMusic(Gdx.files.internal("sfx/bgm.mp3"))
-    bgm.setVolume(0.2f)
+    bgm.setVolume(Const.musicVolume)
     bgm.setLooping(true)
   }
 
