@@ -19,7 +19,11 @@ abstract class CollisionControl(shared: Shared) extends SimpleUnit with Deferred
     })
 
     onDie(toDie)
-    shared.creatures --= toDie
+    toDie.foreach(creature => {
+      creature.isDying = true
+      defer(Const.Timing.fallTime, () => shared.creatures -= creature)
+    })
+//    shared.creatures --= toDie
     if (!toDie.isEmpty) {
       shared.isFalling = true
       defer(Const.Timing.fallTime, () => shared.isFalling = false)
