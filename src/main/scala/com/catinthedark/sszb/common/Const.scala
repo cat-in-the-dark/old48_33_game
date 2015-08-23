@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.{Rectangle, Vector2}
  * Created by over on 03.01.15.
  */
 object Const {
-  val soundVolume: Float = 0f//0.8f
-  val musicVolume: Float = 0f//0.2f
+  val soundVolume: Float = 0.8f//0.8f
+  val musicVolume: Float = 0.2f//0.2f
 
 
   object UI {
@@ -33,6 +33,9 @@ object Const {
     
     val treeWidth: Float = 0.3f
     val treeDepth: Float = 0.1f
+
+    val bushWidth: Float = 0.3f
+    val bushDepth: Float = 0.1f
 
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 1.7f

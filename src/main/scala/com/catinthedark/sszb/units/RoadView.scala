@@ -15,6 +15,7 @@ import com.catinthedark.sszb.Assets.MI
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.Creatures
 import com.catinthedark.sszb.entity.Creatures._
+import com.catinthedark.sszb.entity.Creatures.{Bush, Tree, Lamp, Sign}
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.lib._
 
@@ -89,14 +90,74 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
                 MI.man2
             }
           case w: Mammy =>
-            Assets.Animations.tetka.getKeyFrame(stateTime)
+            if (w.isDying) {
+              Assets.Animations.tetkaFalling.getKeyFrame(w.deathAnimationStateTime)
+            } else
+              Assets.Animations.tetka.getKeyFrame(stateTime)
           case t: Tree =>
+            MI.bush
+          case b: Bush =>
             MI.bush
           case l: Lamp =>
             MI.lampLight
           case s: Sign =>
             MI.sign
         }
+        //=======
+        //
+        //      shared.creatures.sorted.foreach(c => {
+        //        if (c.isDying) {
+        //          val tetkaFallingTexture = Assets.Animations.tetkaFalling.getKeyFrame(c.deathAnimationStateTime)
+        //          val tetkaFallingBuilder = modelBuilder.part("tetkaFalling", GL20.GL_TRIANGLES,
+        //            Usage.Position | Usage.Normal | Usage.TextureCoordinates,
+        //            new Material(
+        //              TextureAttribute.createDiffuse(tetkaFallingTexture),
+        //              new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+        //              new DepthTestAttribute(GL20.GL_ALWAYS)))
+        //          tetkaFallingBuilder.setUVRange(0, 0, 1f, 1f)
+        //
+        //          tetkaFallingBuilder.rect(
+        //            new Vector3(c.x + c.width * dwidth, 0f, c.z),
+        //            new Vector3(c.x, 0f, c.z),
+        //            new Vector3(c.x, 1f, c.z + dz),
+        //            new Vector3(c.x + c.width * dwidth, 1f, c.z + dz),
+        //            new Vector3(0f, 0f, 1f))
+        //
+        //          val babyBuilder = modelBuilder.part("baby", GL20.GL_TRIANGLES,
+        //            Usage.Position | Usage.Normal | Usage.TextureCoordinates,
+        //            new Material(
+        //              TextureAttribute.createDiffuse(Assets.Textures.baby),
+        //              new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+        //              new DepthTestAttribute(GL20.GL_ALWAYS)))
+        //          babyBuilder.setUVRange(0, 0, 1f, 1f)
+        //
+        //          babyBuilder.rect(
+        //            new Vector3(c.x + c.width * dwidth, c.deathAnimationStateTime * 3, c.z),
+        //            new Vector3(c.x, c.deathAnimationStateTime * 3, c.z),
+        //            new Vector3(c.x, 1f + c.deathAnimationStateTime * 3, c.z + dz),
+        //            new Vector3(c.x + c.width * dwidth, 1f + c.deathAnimationStateTime * 3, c.z + dz),
+        //            new Vector3(0f, 0f, 1f))
+        //
+        //          c.deathAnimationStateTime += delta
+        //          c.speed = 0
+        //          c.x += delta * c.fallSpeed
+        //          c.fallSpeed -= delta * 3
+        //          if (c.fallSpeed <= 0) {
+        //            c.fallSpeed = 0
+        //          }
+        //        } else {
+        //          tetkaBuilder.rect(
+        //            new Vector3(c.x + c.width * dwidth, 0f, c.z),
+        //            new Vector3(c.x, 0f, c.z),
+        //            new Vector3(c.x, 1f, c.z + dz),
+        //            new Vector3(c.x + c.width * dwidth, 1f, c.z + dz),
+        //            new Vector3(0f, 0f, 1f))
+        //        }
+        //      })
+        //
+        //
+        //>>>>>>> dd323fcb78606b9efb54ccb63e3570a89e01fa72
+
         (material, e)
       })
       //отсортировать по z-index
@@ -114,13 +175,39 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
         builder.setUVRange(0, 0, 1f, 1f)
 
         entity match {
-          case w: Mammy =>
+          case c: Mammy =>
             builder.rect(
-              new Vector3(w.x + w.width * dwidth, 0f, w.z),
-              new Vector3(w.x, 0f, w.z),
-              new Vector3(w.x, 1f, w.z + dz),
-              new Vector3(w.x + w.width * dwidth, 1f, w.z + dz),
+              new Vector3(c.x + c.width * dwidth, 0f, c.z),
+              new Vector3(c.x, 0f, c.z),
+              new Vector3(c.x, 1f, c.z + dz),
+              new Vector3(c.x + c.width * dwidth, 1f, c.z + dz),
               new Vector3(0f, 0f, 1f))
+
+            if(c.isDying) {
+
+              val babyBuilder = modelBuilder.part("baby", GL20.GL_TRIANGLES,
+                Usage.Position | Usage.Normal | Usage.TextureCoordinates,
+                new Material(
+                  TextureAttribute.createDiffuse(Assets.Textures.baby),
+                  new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+                  new DepthTestAttribute(GL20.GL_ALWAYS)))
+              babyBuilder.setUVRange(0, 0, 1f, 1f)
+
+              babyBuilder.rect(
+                new Vector3(c.x + c.width * dwidth, c.deathAnimationStateTime * 3, c.z),
+                new Vector3(c.x, c.deathAnimationStateTime * 3, c.z),
+                new Vector3(c.x, 1f + c.deathAnimationStateTime * 3, c.z + dz),
+                new Vector3(c.x + c.width * dwidth, 1f + c.deathAnimationStateTime * 3, c.z + dz),
+                new Vector3(0f, 0f, 1f))
+
+              c.deathAnimationStateTime += delta
+              c.speed = 0
+              c.x += delta * c.fallSpeed
+              c.fallSpeed -= delta * 3
+              if (c.fallSpeed <= 0) {
+                c.fallSpeed = 0
+              }
+            }
           case m: Man =>
             builder.rect(
               new Vector3(m.x + 0.7f, 0f, m.z),

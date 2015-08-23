@@ -21,6 +21,8 @@ object Assets {
     val man1, man2, man3,
     mf1, mf2, mf3,
     tetka1, tetka2,
+    tf1, tf2, tf3,
+    baby,
     tree, bush, lampLight, sign = Value
   }
 
@@ -42,6 +44,7 @@ object Assets {
     val speedometer = new Texture(Gdx.files.internal("textures/speedometer.png"))
     val speedPalka = new Texture(Gdx.files.internal("textures/speed_palka.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg.png"))
+    val baby = new Texture(Gdx.files.internal("textures/baby.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
     road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
@@ -59,8 +62,12 @@ object Assets {
     val manFallFrames = TextureRegion.split(
       manFallTexture, 200, 200)
 
+    val tetkaFallTexture = new Texture(Gdx.files.internal("textures/mom_fall.png"))
+    val tetkaFallFrames = TextureRegion.split(
+      tetkaFallTexture, 200, 200)
+
     val tree = new Texture(Gdx.files.internal("textures/tree.png"))
-    val bush = new Texture(Gdx.files.internal("textures/tree.png"))
+    val bush = new Texture(Gdx.files.internal("textures/bush.png"))
     val lampRight = new Texture(Gdx.files.internal("textures/lamp_post.png"))
     val sign = new Texture(Gdx.files.internal("textures/sign.png"))
 
@@ -86,7 +93,12 @@ object Assets {
 
       MI.tetka1 -> material(tetkaFrames(0)(0)),
       MI.tetka2 -> material(tetkaFrames(0)(1)),
-      //MI.tetka3 -> material(tetkaFrames(0)(2)),
+
+      MI.tf1 -> material(tetkaFallFrames(0)(0)),
+      MI.tf2 -> material(tetkaFallFrames(0)(1)),
+      MI.tf3 -> material(tetkaFallFrames(0)(2)),
+
+      MI.baby -> materialTex(baby),
 
       MI.bush -> materialTex(bush),
       MI.lampLight -> materialTex(lampRight),
@@ -126,6 +138,7 @@ object Assets {
     val man = new MyAnimation(0.01f, true, MI.man1, MI.man2)
     val tetka = new MyAnimation(0.3f, true, MI.tetka1, MI.tetka2)
     val manFalling = new MyAnimation(0.1f, false, MI.mf1, MI.mf2, MI.mf3)
+    val tetkaFalling = new MyAnimation(0.1f, false, MI.tf1, MI.tf2, MI.tf3)
   }
 
   object Fonts {

@@ -39,6 +39,7 @@ class Shared(val records: RecordStorage[Record],
     isFalling = false
     playerX = 0
     playerZ = 0.2f
+    trash.clear()
   }
 
   /**
@@ -57,6 +58,8 @@ class Shared(val records: RecordStorage[Record],
     isFalling = false
     playerX = 0
     playerZ = 0.2f
+    trash.clear()
+    
     preset()
   }
   
