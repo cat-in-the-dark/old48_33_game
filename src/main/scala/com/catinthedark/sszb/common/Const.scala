@@ -8,8 +8,8 @@ import com.catinthedark.sszb.Shared
  * Created by over on 03.01.15.
  */
 object Const {
-  val soundVolume: Float = 0f//0.8f
-  val musicVolume: Float = 0f//0.2f
+  val soundVolume: Float = 0.8f//0.8f
+  val musicVolume: Float = 0.2f//0.2f
 
 
   object UI {

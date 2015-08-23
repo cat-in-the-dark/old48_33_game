@@ -30,7 +30,9 @@ object Creatures {
     var speed: Float
     var width: Float
     var depth: Float
-    
+    var isDying:Boolean = false
+    var deathAnimationStateTime: Float = 0f
+    var fallSpeed: Float = 2f
     override def compare(that: Creature): Int = that.z.compareTo(z)
   }
 

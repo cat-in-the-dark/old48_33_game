@@ -31,6 +31,7 @@ object Assets {
     val speedometer = new Texture(Gdx.files.internal("textures/speedometer.png"))
     val speedPalka = new Texture(Gdx.files.internal("textures/speed_palka.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg.png"))
+    val baby = new Texture(Gdx.files.internal("textures/baby.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
     road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
@@ -47,7 +48,11 @@ object Assets {
     val manFallTexture = new Texture(Gdx.files.internal("textures/man_fall.png"))
     val manFallFrames = TextureRegion.split(
       manFallTexture, 200, 200)
-    
+
+    val tetkaFallTexture = new Texture(Gdx.files.internal("textures/mom_fall.png"))
+    val tetkaFallFrames = TextureRegion.split(
+      tetkaFallTexture, 200, 200)
+
     val tree = new Texture(Gdx.files.internal("textures/tree.png"))
     val bush = new Texture(Gdx.files.internal("textures/bush.png"))
     val lampRight = new Texture(Gdx.files.internal("textures/lamp_post.png"))
@@ -70,6 +75,7 @@ object Assets {
     val man = loopingAnimation(Textures.manFrames, 0.01f, (0, 0), (0, 1))
     val tetka = loopingAnimation(Textures.tetkaFrames, 0.3f, (0,0), (0, 1))
     val manFalling = normalAnimation(Textures.manFallFrames, 0.1f, (0,0), (0,1), (0,2))
+    val tetkaFalling = normalAnimation(Textures.tetkaFallFrames, 0.1f, (0,0), (0,1), (0,2))
   }
 
   object Fonts {
