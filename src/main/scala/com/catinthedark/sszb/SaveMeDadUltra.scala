@@ -41,6 +41,7 @@ class SaveMeDadUltra extends Game {
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val levelOneSplashScreen = keyAwait("Level1", Assets.Textures.level1)
     val levelTwoSplashscreen = keyAwait("Level2", Assets.Textures.level2)
+    val endArt = delayed("EndArt", Assets.Textures.gameWin, 1.0f)
 
     val shared: Shared = new Shared(recordStorage, 0f, 0f, 1, 0f, 0f, mutable.ListBuffer(), trash = mutable.ListBuffer())
 
@@ -74,14 +75,15 @@ class SaveMeDadUltra extends Game {
     rm.addRoute(dayTwo, res => {
       res match {
         case true =>
-          gameWin
+          endArt
         case false =>
           shared.reset()
           logo
       }
     })
-    rm.addRoute(gameWin, anyway => newRecord)
-    rm.addRoute(newRecord, anyway => {
+    rm.addRoute(endArt, anyway => newRecord)
+    rm.addRoute(newRecord, anyway => gameWin)
+    rm.addRoute(gameWin, anyway => {
       shared.reset()
       menu
     })

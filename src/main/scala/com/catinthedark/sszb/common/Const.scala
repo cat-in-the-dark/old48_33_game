@@ -65,7 +65,7 @@ object Const {
   }
 
   object Distance {
-    val levelDistance = 42f
+    val levelDistance = 50f
   }
 
   object Difficulty {
