@@ -2,6 +2,7 @@ package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Matrix4
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.{Physics, UI}
 import com.catinthedark.sszb.lib.Magic._
 import com.catinthedark.sszb.{Assets, Shared}
@@ -18,7 +19,7 @@ class HudView(shared: Shared) extends SimpleUnit {
     override def render(delta: Float): Unit = {
       timerHudBatch.managed { self =>
         Assets.Fonts.timerFrontFont.draw(self, s"time:${shared.lvlTime.toLong}", UI.timerPos.x, UI.timerPos.y)
-        Assets.Fonts.timerFrontFont.draw(self, s"dist:${shared.lvlDistance.toLong}", UI.distPos.x, UI.distPos.y)
+        Assets.Fonts.redFont.draw(self, s"dist:${shared.lvlDistance.toLong}/${Const.Distance.levelDistance.toLong}", UI.distPos.x, UI.distPos.y)
         self.draw(Assets.Textures.slider, UI.sliderPos.x, UI.sliderPos.y)
         self.draw(Assets.Textures.pointer, UI.pointerPos.x + shared.cursorPosition * sliderWidth, UI.pointerPos.y)
         if (shared.cursorPosition > 0.5) {

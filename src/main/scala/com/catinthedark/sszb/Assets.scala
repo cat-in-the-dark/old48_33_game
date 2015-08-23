@@ -166,7 +166,7 @@ object Assets {
     highScoreFont.setColor(167f / 255, 128f / 255, 183f / 255, 1)
 
     val otherFontParam = new FreeTypeFontParameter()
-    otherFontParam.size = 30
+    otherFontParam.size = 44
 
     val greenFont = mainGenerator.generateFont(otherFontParam)
     greenFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
