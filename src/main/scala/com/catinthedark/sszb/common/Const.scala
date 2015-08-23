@@ -26,16 +26,16 @@ object Const {
   }
 
   object Physics {
-    val lampWidth: Float = 0.3f
+    val lampWidth: Float = 0.7f
     val lampDepth: Float = 0.1f
 
-    val signWidth: Float = 0.3f
+    val signWidth: Float = 0.6f
     val signDepth: Float = 0.1f
     
-    val treeWidth: Float = 0.3f
+    val treeWidth: Float = 0.6f
     val treeDepth: Float = 0.1f
 
-    val bushWidth: Float = 0.3f
+    val bushWidth: Float = 0.8f
     val bushDepth: Float = 0.1f
 
     val blockSize = new Vector2(1f, 1f)
