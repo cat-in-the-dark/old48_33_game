@@ -84,7 +84,7 @@ object Const {
 
     def mammySpeed(lvl: Int): Float = {
       //TODO: depends on lvl calculate speed
-      0.3f
+      0.15f
     }
 
     val seedDivider = 10

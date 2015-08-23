@@ -59,7 +59,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
       shared.playerX -= Const.Physics.playerXSpeed
       if (shared.playerX < Const.Physics.roadRightBorderX) {
         rightAllowed = false
-        Assets.Audios.border.play()
+        Assets.Audios.border.play(Const.soundVolume)
         shared.speed /= 2
         shared.playerX += Const.Physics.playerBorderTeleportationX
       }
@@ -69,7 +69,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
       shared.playerX += Const.Physics.playerXSpeed
       if (shared.playerX > Const.Physics.roadLeftBorderX) {
         leftAllowed = false
-        Assets.Audios.border.play()
+        Assets.Audios.border.play(Const.soundVolume)
         shared.speed /= 2
         shared.playerX -= Const.Physics.playerBorderTeleportationX
       }
