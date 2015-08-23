@@ -59,17 +59,27 @@ object Assets {
     val tetkaFrames = TextureRegion.split(tetka, 120, 200)
 
     val manFallTexture = new Texture(Gdx.files.internal("textures/man_fall.png"))
+    manFallTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear)
     val manFallFrames = TextureRegion.split(
       manFallTexture, 200, 200)
 
     val tetkaFallTexture = new Texture(Gdx.files.internal("textures/mom_fall.png"))
+    tetkaFallTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
     val tetkaFallFrames = TextureRegion.split(
       tetkaFallTexture, 200, 200)
 
     val tree = new Texture(Gdx.files.internal("textures/tree.png"))
+    tree.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
     val bush = new Texture(Gdx.files.internal("textures/bush.png"))
+    bush.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
     val lampRight = new Texture(Gdx.files.internal("textures/lamp_post.png"))
+    lampRight.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+
     val sign = new Texture(Gdx.files.internal("textures/sign.png"))
+    sign.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
 
     def materialTex(tex: Texture) = new Material(
@@ -167,6 +177,8 @@ object Assets {
     val fall = Gdx.audio.newSound(Gdx.files.internal("sfx/fall.wav"))
     val pedal1 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal1.wav"))
     val pedal2 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal2.wav"))
+
+
 
     val border = Gdx.audio.newSound(Gdx.files.internal("sfx/border.wav"))
 

@@ -8,8 +8,8 @@ import com.catinthedark.sszb.Shared
  * Created by over on 03.01.15.
  */
 object Const {
-  val soundVolume: Float = 0.8f//0.8f
-  val musicVolume: Float = 0.2f//0.2f
+  val soundVolume: Float = 0.5f//0.8f
+  val musicVolume: Float = 0.8f//0.2f
 
 
   object UI {
@@ -40,7 +40,8 @@ object Const {
 
     val blockSize = new Vector2(1f, 1f)
     val spawnPlaceZ = 1.7f
-    val RoadSpeedScale = 0.05f
+    val roadSpeedScale = 0.05f
+    var trashSpeedScale = roadSpeedScale *  3.0f
     val playerXSpeed = 0.06f
     val maxZViewPort = 2.0f
     val minZViewPort = -0.3f

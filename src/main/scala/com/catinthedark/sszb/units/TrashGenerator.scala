@@ -93,7 +93,7 @@ class TrashGenerator(shared: Shared) extends SimpleUnit {
     }
     
     shared.trash.foreach(t => {
-      t.z -= shared.speed * delta
+      t.z -= shared.speed * delta * Const.Physics.trashSpeedScale
     })
   }
   

@@ -41,6 +41,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     shared.lvlTime = time
     shared.lvl = lvl
     units.foreach(_.onActivate())
+    Assets.Audios.bgm.setVolume(0)
     Assets.Audios.bgm.play()
   }
 

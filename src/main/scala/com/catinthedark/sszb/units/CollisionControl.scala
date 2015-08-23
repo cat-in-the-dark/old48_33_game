@@ -1,7 +1,7 @@
 package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.math.{Intersector, Rectangle}
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.Creatures.Creature
 import com.catinthedark.sszb.lib.{Deferred, Pipe, SimpleUnit}
@@ -19,12 +19,17 @@ abstract class CollisionControl(shared: Shared) extends SimpleUnit with Deferred
     })
 
     onDie(toDie)
+
     toDie.foreach(creature => {
       creature.isDying = true
       defer(Const.Timing.fallTime, () => shared.creatures -= creature)
     })
-//    shared.creatures --= toDie
+
+    //shared.creatures --= toDie
+
     if (!toDie.isEmpty) {
+      if (!shared.isFalling)
+        Assets.Audios.fall.play(Const.soundVolume)
       shared.isFalling = true
       defer(Const.Timing.fallTime, () => shared.isFalling = false)
     }
