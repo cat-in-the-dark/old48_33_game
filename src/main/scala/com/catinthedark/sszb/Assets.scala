@@ -27,6 +27,9 @@ object Assets {
     val XLetter = new Texture(Gdx.files.internal("textures/X.png"))
     val ZLetter = new Texture(Gdx.files.internal("textures/Z.png"))
     val palka = new Texture(Gdx.files.internal("textures/palka.png"))
+    val speedometer = new Texture(Gdx.files.internal("textures/speedometer.png"))
+    val speedPalka = new Texture(Gdx.files.internal("textures/speed_palka.png"))
+    val bg = new Texture(Gdx.files.internal("textures/bg.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
     road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
@@ -71,6 +74,9 @@ object Assets {
 
   object Audios {
     val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"))
+    val fall = Gdx.audio.newSound(Gdx.files.internal("sfx/fall.wav"))
+    val pedal1 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal1.wav"))
+    val pedal2 = Gdx.audio.newSound(Gdx.files.internal("sfx/pedal2.wav"))
     val bgm = Gdx.audio.newMusic(Gdx.files.internal("sfx/bgm.mp3"))
     bgm.setVolume(0.2f)
     bgm.setLooping(true)

@@ -1,6 +1,6 @@
 package com.catinthedark.sszb.units
 
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.{Physics, Pedals}
 import com.catinthedark.sszb.lib.{Deferred, SimpleUnit}
 
@@ -41,15 +41,22 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       if (key != lastPedal || crossedCenter) {
         shared.speed += Math.abs(currentPedalPosition - centerPedalPosition)
         lastPedal = key
+        shared.palkaPos = currentPedalPosition
         crossedCenter = false
+        if (shared.speed < Physics.maxSpeed / 3) {
+          Assets.Audios.pedal1.play()
+        } else {
+          Assets.Audios.pedal2.play()
+        }
       }
     } else {
       shared.speed = 0
       lastPedal = 0
+      shared.palkaPos = leftPedalPosition
+      Assets.Audios.fall.play()
       currentPedalPosition = leftPedalPosition
     }
     shared.shouldStartTimer = true
-    shared.palkaPos = currentPedalPosition
     println(s"$key")
   }
 
@@ -66,12 +73,12 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
     lastPedalPosition = currentPedalPosition
     shared.speed -= speedToFriction(shared.speed) * delta
 
-    if (shared.speed <= 0.0001) {
+    if (shared.speed <= 0.3) {
       shared.speed = 0
       currentPedalPosition = leftPedalPosition
       direction = 1
-    } else if (shared.speed >= 10.0f) {
-      shared.speed = 10.0f
+    } else if (shared.speed >= Physics.maxSpeed) {
+      shared.speed = Physics.maxSpeed
     }
     if (currentPedalPosition > 1) {
       direction *= -1

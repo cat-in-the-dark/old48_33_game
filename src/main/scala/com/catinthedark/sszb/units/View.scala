@@ -10,6 +10,7 @@ import com.catinthedark.sszb.lib.{LocalDeferred, Deferred, SimpleUnit}
  */
 abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
   val views = Seq(new HudView(shared),
+    new BGView(shared),
     new RoadView(shared) with LocalDeferred)
 
   override def onActivate(): Unit = views.foreach(_.onActivate())
