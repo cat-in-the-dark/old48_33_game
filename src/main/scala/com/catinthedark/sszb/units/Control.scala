@@ -56,9 +56,13 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   override def run(delta: Float) = {
 
-    if (shared.speed != 0 && !shared.isFalling) {
+    if (!shared.isFalling) {
       if (rightAllowed && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-        shared.playerX -= Const.Physics.playerXSpeed
+        if (shared.speed != 0) {
+          shared.playerX -= Const.Physics.playerXSpeed
+        } else {
+          shared.playerX -= Const.Physics.playerXSpeed / 5
+        }
         if (shared.playerX < Const.Physics.roadRightBorderX) {
           rightAllowed = false
           Assets.Audios.border.play(Const.soundVolume)
@@ -68,7 +72,11 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
       }
 
       if (leftAllowed && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-        shared.playerX += Const.Physics.playerXSpeed
+        if (shared.speed != 0) {
+          shared.playerX += Const.Physics.playerXSpeed
+        } else {
+          shared.playerX += Const.Physics.playerXSpeed / 5
+        }
         if (shared.playerX > Const.Physics.roadLeftBorderX) {
           leftAllowed = false
           Assets.Audios.border.play(Const.soundVolume)
