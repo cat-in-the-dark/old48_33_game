@@ -52,6 +52,7 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       }
     } else {
       shared.isFalling = true
+      defer(Const.Timing.fallTime, () => shared.isFalling = false)
       Assets.Audios.fall.play(Const.soundVolume)
     }
     shared.shouldStartTimer = true

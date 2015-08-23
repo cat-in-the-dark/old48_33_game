@@ -12,6 +12,9 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   val control = new Control(shared) with LocalDeferred
   val transmissionControl = new TransmissionControl(shared) with LocalDeferred
   control.onPedaled + (t => transmissionControl.onPedaled(t))
+  val collision = new CollisionControl(shared) with LocalDeferred
+
+  //collision.onDie + (deathNode => )
   var units: Seq[SimpleUnit] = Seq(
     control,
     new AI(shared) with LocalDeferred,
@@ -21,7 +24,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     new HudView(shared),
     transmissionControl,
     new LooseControl(shared),
-    new CollisionControl(shared) with LocalDeferred,
+    collision,
     new AudioDirector(shared)
   )
 

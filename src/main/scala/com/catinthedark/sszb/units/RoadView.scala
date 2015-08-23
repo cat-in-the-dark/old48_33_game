@@ -46,12 +46,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
         shared.playerZ -= 0.01f
 
-//      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-//        playerX += 0.04f
-//
-//      if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-//        playerX -= 0.04f
-
       diff += delta * shared.speed * Const.Physics.RoadSpeedScale
 
       modelBuilder.begin()
@@ -76,9 +70,6 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
       if (shared.isFalling) {
         animationDelta += delta
         manTexture = Assets.Animations.manFalling.getKeyFrame(animationDelta)
-        if (animationDelta > 1) {
-          shared.isFalling = false
-        }
       } else {
         animationDelta = 0
         manTexture = if (shared.speed == 0)

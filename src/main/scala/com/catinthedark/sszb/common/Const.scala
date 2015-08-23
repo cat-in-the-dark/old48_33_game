@@ -47,6 +47,7 @@ object Const {
 
   object Timing {
     val levelTime = 5f
+    val fallTime = 0.85f
   }
 
   object Distance {
