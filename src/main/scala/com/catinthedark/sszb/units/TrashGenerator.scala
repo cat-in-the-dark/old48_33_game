@@ -15,10 +15,10 @@ class TrashGenerator(shared: Shared) extends SimpleUnit {
   var lastSpawnDistanceTree = 0f
   var lastSpawnDistanceBush = 0f
   
-  val spawnDeltaSign = 1.5f
+  val spawnDeltaSign = 1.3f
   val spawnDeltaLamp = 1.8f
-  val spawnDeltaTree = 0.8f
-  val spawnDeltaBush = 0.3f
+  val spawnDeltaTree = 0.6f
+  val spawnDeltaBush = 0.2f
   
   val signLeftPos = 1.4f
   val signRightPos = -1.5f
@@ -31,7 +31,14 @@ class TrashGenerator(shared: Shared) extends SimpleUnit {
   
   val bushLeftPos = 2f
   val bushRightPos = -2.1f
-  
+
+  override def onExit(): Unit = {
+    lastSpawnDistanceSign = 0f
+    lastSpawnDistanceLamp = 0f
+    lastSpawnDistanceTree = 0f
+    lastSpawnDistanceBush = 0f
+  }
+
   override def run(delta: Float): Unit = {
     if (shared.lvlDistance - lastSpawnDistanceSign > spawnDeltaSign) {
       lastSpawnDistanceSign = shared.lvlDistance
