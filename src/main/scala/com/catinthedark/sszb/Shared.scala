@@ -16,7 +16,8 @@ class Shared(var lvlTime: Float,
              var lastSpawnDistance: Float = 0f,
              var palkaPos: Float = -1.0f,
              var shouldStartTimer: Boolean = false,
-             var playerX: Float = 0f
+             var playerX: Float = 0f,
+             var playerZ: Float = 0.2f
               ) {
 
   def reset() = {
@@ -30,6 +31,7 @@ class Shared(var lvlTime: Float,
     palkaPos = -1.0f
     shouldStartTimer = false
     playerX = 0
+    playerZ = 0.2f
   }
 
   /**
@@ -46,5 +48,6 @@ class Shared(var lvlTime: Float,
     palkaPos = -1.0f
     shouldStartTimer = false
     playerX = 0
+    playerZ = 0.2f
   }
 }

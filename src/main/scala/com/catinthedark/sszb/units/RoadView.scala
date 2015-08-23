@@ -16,10 +16,6 @@ import com.catinthedark.sszb.lib._
  * Created by over on 02.01.15.
  */
 abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
-
-  var playerZ = 0.2f
-  var playerX = 0.5f
-
   val roadLayer = new Layer {
     var diff = 0f
     val modelBuilder = new ModelBuilder()
@@ -39,10 +35,10 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
     override def render(delta: Float): Unit = {
       if (Gdx.input.isKeyPressed(Input.Keys.UP))
-        playerZ += 0.01f
+        shared.playerZ += 0.01f
 
       if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-        playerZ -= 0.01f
+        shared.playerZ -= 0.01f
 
 //      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
 //        playerX += 0.04f
@@ -87,10 +83,10 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
       manBuilder.setUVRange(0, 0, 1f, 1f)
       manBuilder.rect(
-        new Vector3(shared.playerX + 0.5f, 0f, playerZ),
-        new Vector3(shared.playerX, 0f, playerZ),
-        new Vector3(shared.playerX, 1f, playerZ + dz),
-        new Vector3(shared.playerX + 0.5f, 1f, playerZ + dz),
+        new Vector3(shared.playerX + 0.5f, 0f, shared.playerZ),
+        new Vector3(shared.playerX, 0f, shared.playerZ),
+        new Vector3(shared.playerX, 1f, shared.playerZ + dz),
+        new Vector3(shared.playerX + 0.5f, 1f, shared.playerZ + dz),
         new Vector3(0f, 0f, 1f))
       val model = modelBuilder.end();
 
