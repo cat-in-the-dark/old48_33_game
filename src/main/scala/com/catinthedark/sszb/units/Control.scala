@@ -74,5 +74,9 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
         shared.playerX -= Const.Physics.playerBorderTeleportationX
       }
     }
+
+    if (Gdx.input.isKeyPressed(Input.Keys.L)) {
+      Assets.Audios.bgm.setVolume(Assets.Audios.bgm.getVolume + 0.01f)
+    }
   }
 }
