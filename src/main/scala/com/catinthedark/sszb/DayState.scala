@@ -16,6 +16,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     control,
     new AI(shared) with LocalDeferred,
     new AIControl(shared),
+    new BGView(shared) with LocalDeferred,
     new View(shared) with LocalDeferred,
     new HudView(shared),
     transmissionControl,

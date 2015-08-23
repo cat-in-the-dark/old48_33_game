@@ -29,6 +29,7 @@ object Assets {
     val palka = new Texture(Gdx.files.internal("textures/palka.png"))
     val speedometer = new Texture(Gdx.files.internal("textures/speedometer.png"))
     val speedPalka = new Texture(Gdx.files.internal("textures/speed_palka.png"))
+    val bg = new Texture(Gdx.files.internal("textures/bg.png"))
     road.setWrap(TextureWrap.Repeat, TextureWrap.Repeat)
     road.setFilter(TextureFilter.Linear, TextureFilter.Linear)
 
