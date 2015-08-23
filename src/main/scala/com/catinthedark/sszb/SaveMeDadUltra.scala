@@ -35,11 +35,12 @@ class SaveMeDadUltra extends Game {
     println("records ->", recordStorage.all)
 
     val logo = delayed("Logo", Assets.Textures.logo, 1.0f)
+    val menu = keyAwait("Menu", Assets.Textures.menu)
     val t1 = keyAwait("Tutorial1", Assets.Textures.t1)
     val t2 = keyAwait("Tutorial2", Assets.Textures.t2)
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
-    val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
-    val t5 = keyAwait("Tutorial4", Assets.Textures.t2)
+    val levelOneSplashScreen = keyAwait("Level1", Assets.Textures.level1)
+    val levelTwoSplashscreen = keyAwait("Level2", Assets.Textures.level2)
 
     val shared: Shared = new Shared(recordStorage, 0f, 0f, 1, 0f, 0f, mutable.ListBuffer(), trash = mutable.ListBuffer())
 
@@ -48,22 +49,27 @@ class SaveMeDadUltra extends Game {
     val newRecord = new NewRecordState(shared)
     val gameWin = new GameWin(shared)
 
-    rm.addRoute(logo, anyway => dayOne)
+    rm.addRoute(logo, anyway => menu)
+    rm.addRoute(menu, anyway => t1)
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
-    rm.addRoute(t3, anyway => t4)
-    rm.addRoute(t4, anyway => dayOne)
+    rm.addRoute(t3, anyway => levelOneSplashScreen)
+    rm.addRoute(levelOneSplashScreen, anyway => dayOne)
     rm.addRoute(dayOne, res => {
       res match {
         case true =>
           shared.lvl = 2
-          t5
+          levelTwoSplashscreen
         case false =>
           shared.reset()
           logo
       }
     })
-    rm.addRoute(t5, anyway => dayTwo)
+    rm.addRoute(dayOne, anyway => {
+      shared.lvl = 2
+      levelTwoSplashscreen
+    })
+    rm.addRoute(levelTwoSplashscreen, anyway => dayTwo)
 
     rm.addRoute(dayTwo, res => {
       res match {
@@ -77,7 +83,7 @@ class SaveMeDadUltra extends Game {
     rm.addRoute(newRecord, anyway => gameWin)
     rm.addRoute(gameWin, anyway => {
       shared.reset()
-      t1
+      menu
     })
 
     rm.start(logo)
