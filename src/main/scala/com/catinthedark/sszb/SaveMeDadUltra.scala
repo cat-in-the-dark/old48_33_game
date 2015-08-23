@@ -39,20 +39,27 @@ class SaveMeDadUltra extends Game {
     val t2 = keyAwait("Tutorial2", Assets.Textures.t2)
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
+    val t5 = keyAwait("Tutorial4", Assets.Textures.t2)
 
     val shared: Shared = new Shared(recordStorage, 0f, 0f, 1, 0f, 0f, mutable.ListBuffer())
 
-    val day = new DayState(shared)
+    val dayOne = new DayState(shared)
+    val dayTwo = new DayState(shared)
     val newRecord = new NewRecordState(shared)
     val gameWin = new GameWin(shared)
 
-    rm.addRoute(logo, anyway => day)
+    rm.addRoute(logo, anyway => dayOne)
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
     rm.addRoute(t3, anyway => t4)
-    rm.addRoute(t4, anyway => day)
+    rm.addRoute(t4, anyway => dayOne)
+    rm.addRoute(dayOne, anyway => {
+      shared.lvl = 2
+      t5
+    })
+    rm.addRoute(t5, anyway => dayTwo)
 
-    rm.addRoute(day, anyway => newRecord)
+    rm.addRoute(dayTwo, anyway => newRecord)
     rm.addRoute(newRecord, anyway => gameWin)
     rm.addRoute(gameWin, anyway => {
       shared.reset()

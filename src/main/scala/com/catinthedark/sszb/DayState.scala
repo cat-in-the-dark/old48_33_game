@@ -31,7 +31,11 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   override def toString = "Day"
 
   override def onActivate(): Unit = {
+    val time = shared.lvlTime
+    val lvl = shared.lvl
     shared.prepareGame()
+    shared.lvlTime = time
+    shared.lvl = lvl
     units.foreach(_.onActivate())
     Assets.Audios.bgm.play()
   }
