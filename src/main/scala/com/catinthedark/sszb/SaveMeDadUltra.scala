@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
 import com.catinthedark.sszb.lib._
 import com.catinthedark.sszb.lib.records.RecordStorage
-import com.catinthedark.sszb.records.{RawStringStore, Record}
+import com.catinthedark.sszb.records.Record
 
 import scala.collection.mutable
 import scala.util.Random
@@ -30,9 +30,6 @@ class SaveMeDadUltra extends Game {
   val rand = new Random()
 
   override def create() = {
-    val recordStorage = new RecordStorage[Record]("records.txt", 5) with RawStringStore
-
-    println("records ->", recordStorage.all)
 
     val logo = delayed("Logo", Assets.Textures.logo, 1.0f)
     val menu = keyAwait("Menu", Assets.Textures.menu)
@@ -43,7 +40,7 @@ class SaveMeDadUltra extends Game {
     val levelTwoSplashscreen = keyAwait("Level2", Assets.Textures.level2)
     val endArt = delayed("EndArt", Assets.Textures.gameWin, 1.0f)
 
-    val shared: Shared = new Shared(recordStorage, 0f, 0f, 1, 0f, 0f, mutable.ListBuffer(), trash = mutable.ListBuffer())
+    val shared: Shared = new Shared(0f, 0f, 1, 0f, 0f, mutable.ListBuffer(), trash = mutable.ListBuffer())
 
     val dayOne = new DayState(shared)
     val dayTwo = new DayState(shared)

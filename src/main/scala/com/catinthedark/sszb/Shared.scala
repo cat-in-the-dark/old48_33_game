@@ -10,8 +10,7 @@ import scala.collection.mutable
 /**
  * Created by over on 18.04.15.
  */
-class Shared(val records: RecordStorage[Record],
-             var lvlTime: Float,
+class Shared(var lvlTime: Float,
              var lvlDistance: Float,
              var lvl: Int,
              var speed: Float,
@@ -23,7 +22,8 @@ class Shared(val records: RecordStorage[Record],
              var playerX: Float = 0f,
              var isFalling: Boolean = false,
              var playerZ: Float = 0.05f,
-             var trash: mutable.ListBuffer[Creature]
+             var trash: mutable.ListBuffer[Creature],
+             var username: String = ""
               ) {
 
   def reset() = {
@@ -40,6 +40,7 @@ class Shared(val records: RecordStorage[Record],
     playerX = 0
     playerZ = 0.05f
     trash.clear()
+    username = ""
   }
 
   /**
@@ -59,10 +60,11 @@ class Shared(val records: RecordStorage[Record],
     playerX = 0
     playerZ = 0.05f
     trash.clear()
-    
+    username = ""
+
     preset()
   }
-  
+
   def preset(): Unit = {
     trash += Creatures.createSign(this, 1.4f, 0.3f)
     trash += Creatures.createSign(this, -1.5f, 1.5f)
