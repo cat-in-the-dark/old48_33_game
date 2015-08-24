@@ -30,9 +30,9 @@ object Assets {
     val logo = new Texture(Gdx.files.internal("textures/logo.png"))
 
     val menu = new Texture(Gdx.files.internal("textures/menu.png"))
-    val t1 = new Texture(Gdx.files.internal("textures/t1.png"))
-    val t2 = new Texture(Gdx.files.internal("textures/t2.png"))
-    val t3 = new Texture(Gdx.files.internal("textures/t3.png"))
+    val t1 = new Texture(Gdx.files.internal("textures/t1_eng.png"))
+    val t2 = new Texture(Gdx.files.internal("textures/t2_eng.png"))
+    val t3 = new Texture(Gdx.files.internal("textures/t3_eng.png"))
     val level1 = new Texture(Gdx.files.internal("textures/level1.png"))
     val level2 = new Texture(Gdx.files.internal("textures/level2.png"))
     val gameOver = new Texture(Gdx.files.internal("textures/gameover.png"))
