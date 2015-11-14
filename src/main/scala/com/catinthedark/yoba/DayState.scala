@@ -13,12 +13,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   val transmissionControl = new TransmissionControl(shared) with LocalDeferred
   control.onPedaled + (t => transmissionControl.onPedaled(t))
   val collision = new CollisionControl(shared) with LocalDeferred
-
-//  collision.onDie + (deathNode => {
-//    if (!deathNode.isEmpty) {
-//      println("die")
-//    }
-//  })
+  
   var units: Seq[SimpleUnit] = Seq(
     control,
     new AI(shared) with LocalDeferred,
@@ -26,6 +21,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     new BGView(shared) with LocalDeferred,
     new View(shared) with LocalDeferred,
     new HudView(shared),
+    new ProjectionDebugView(shared),
     transmissionControl,
     new LooseControl(shared),
     new TrashGenerator(shared),
@@ -56,9 +52,6 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
       shared.lvlTime += delta
     }
     shared.lvlDistance += shared.speed * delta
-
-    //println(s"DISTANCE ${shared.lvlDistance}")
-    //println(s"Creatures ${shared.creatures}")
 
     if (shared.lvlDistance >= Distance.levelDistance) {
       Some(true)
