@@ -1,7 +1,7 @@
-package com.catinthedark.yoba.lib.animation
+package com.catinthedark.lib.animation
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.catinthedark.yoba.lib.Renderable
+import com.catinthedark.lib.Renderable
 
 /**
  * Created by over on 15.03.15.

@@ -2,10 +2,10 @@ package com.catinthedark.yoba.units
 
 
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
-import com.catinthedark.yoba.{Assets, Shared}
-import com.catinthedark.yoba.common.Const.Pedals
-import com.catinthedark.yoba.lib._
+import com.catinthedark.lib.{Deferred, Pipe, SimpleUnit}
 import com.catinthedark.yoba.common.Const
+import com.catinthedark.yoba.common.Const.Pedals
+import com.catinthedark.yoba.{Assets, Shared}
 
 /**
  * Created by over on 22.01.15.

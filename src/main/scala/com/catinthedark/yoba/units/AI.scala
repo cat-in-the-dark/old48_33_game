@@ -1,10 +1,10 @@
 package com.catinthedark.yoba.units
 
+import com.catinthedark.lib.{Deferred, SimpleUnit}
 import com.catinthedark.yoba.Shared
 import com.catinthedark.yoba.common.Const
 import com.catinthedark.yoba.common.Const.Difficulty
 import com.catinthedark.yoba.entity.Creatures
-import com.catinthedark.yoba.lib.{Deferred, SimpleUnit}
 
 import scala.util.Random
 

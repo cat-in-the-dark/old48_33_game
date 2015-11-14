@@ -1,8 +1,8 @@
 package com.catinthedark.yoba
 
 import com.badlogic.gdx.{Gdx, Input}
+import com.catinthedark.lib.{LocalDeferred, SimpleUnit, YieldUnit}
 import com.catinthedark.yoba.common.Const.Distance
-import com.catinthedark.yoba.lib.{Interval, LocalDeferred, SimpleUnit, YieldUnit}
 import com.catinthedark.yoba.units._
 
 /**

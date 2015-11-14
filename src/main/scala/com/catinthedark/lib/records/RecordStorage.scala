@@ -1,4 +1,4 @@
-package com.catinthedark.yoba.lib.records
+package com.catinthedark.lib.records
 
 import java.io.{File, FileWriter}
 

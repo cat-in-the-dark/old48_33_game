@@ -1,9 +1,9 @@
 package com.catinthedark.yoba.units
 
+import com.catinthedark.lib.{Deferred, SimpleUnit}
 import com.catinthedark.yoba.common.Const
+import com.catinthedark.yoba.common.Const.{Pedals, Physics}
 import com.catinthedark.yoba.{Assets, Shared}
-import com.catinthedark.yoba.common.Const.{Physics, Pedals}
-import com.catinthedark.yoba.lib.{Deferred, SimpleUnit}
 
 /**
  * Created by kirill on 22.08.15.

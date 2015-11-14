@@ -2,8 +2,8 @@ package com.catinthedark.yoba.units
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
+import com.catinthedark.lib.{Deferred, LocalDeferred, SimpleUnit}
 import com.catinthedark.yoba.Shared
-import com.catinthedark.yoba.lib.{LocalDeferred, Deferred, SimpleUnit}
 
 /**
  * Created by over on 22.08.15.

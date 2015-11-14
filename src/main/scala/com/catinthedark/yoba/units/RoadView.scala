@@ -1,25 +1,19 @@
 package com.catinthedark.yoba.units
 
-import java.util
-
-import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.{Input, Gdx}
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.VertexAttributes.Usage
-import com.badlogic.gdx.graphics.g3d.attributes.{DepthTestAttribute, BlendingAttribute, TextureAttribute, ColorAttribute}
-import com.badlogic.gdx.graphics.g3d.model.Node
-import com.badlogic.gdx.graphics.g3d.utils.{MeshPartBuilder, ModelBuilder}
-import com.badlogic.gdx.graphics.g3d.{Model, Material, ModelBatch, ModelInstance}
+import com.badlogic.gdx.graphics.g3d.attributes.{BlendingAttribute, DepthTestAttribute, TextureAttribute}
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
+import com.badlogic.gdx.graphics.g3d.{Material, ModelBatch, ModelInstance}
 import com.badlogic.gdx.graphics.{GL20, _}
 import com.badlogic.gdx.math.Vector3
+import com.catinthedark.lib.{Deferred, Layer, SimpleUnit}
 import com.catinthedark.yoba.Assets.MI
 import com.catinthedark.yoba.common.Const
 import com.catinthedark.yoba.entity.Creatures
-import com.catinthedark.yoba.entity.Creatures._
-import com.catinthedark.yoba.entity.Creatures.{Bush, Tree, Lamp, Sign}
+import com.catinthedark.yoba.entity.Creatures.{Bush, Lamp, Sign, Tree, _}
 import com.catinthedark.yoba.{Assets, Shared}
-import com.catinthedark.yoba.lib._
 
-import scala.collection.mutable.ListBuffer
 import scala.util.Random
 
 /**

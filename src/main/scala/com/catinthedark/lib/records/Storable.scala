@@ -1,4 +1,4 @@
-package com.catinthedark.yoba.lib.records
+package com.catinthedark.lib.records
 
 /**
  * Created by over on 23.08.15.

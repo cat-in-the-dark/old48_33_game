@@ -1,9 +1,9 @@
-package com.catinthedark.yoba.lib
+package com.catinthedark.lib
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.{GL20, Texture}
-import com.catinthedark.yoba.lib.Magic._
+import Magic._
 
 /**
  * Created by over on 13.12.14.

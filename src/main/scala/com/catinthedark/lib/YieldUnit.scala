@@ -1,4 +1,4 @@
-package com.catinthedark.yoba.lib
+package com.catinthedark.lib
 
 /**
  * Created by over on 13.12.14.

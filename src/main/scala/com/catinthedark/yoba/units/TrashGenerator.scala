@@ -1,10 +1,9 @@
 package com.catinthedark.yoba.units
 
+import com.catinthedark.lib.SimpleUnit
 import com.catinthedark.yoba.Shared
 import com.catinthedark.yoba.common.Const
-import com.catinthedark.yoba.common.Const.Physics
 import com.catinthedark.yoba.entity.Creatures
-import com.catinthedark.yoba.lib.SimpleUnit
 
 import scala.util.Random
 

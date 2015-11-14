@@ -1,4 +1,4 @@
-package com.catinthedark.yoba.lib.animation
+package com.catinthedark.lib.animation
 
 /**
  * Created by over on 15.03.15.

@@ -1,4 +1,4 @@
-package com.catinthedark.yoba.lib
+package com.catinthedark.lib
 
 import scala.collection.mutable
 

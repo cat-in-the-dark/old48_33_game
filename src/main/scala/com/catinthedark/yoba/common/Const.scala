@@ -1,8 +1,7 @@
 package com.catinthedark.yoba.common
 
 import com.badlogic.gdx.Input
-import com.badlogic.gdx.math.{Rectangle, Vector2}
-import com.catinthedark.yoba.Shared
+import com.badlogic.gdx.math.Vector2
 
 /**
  * Created by over on 03.01.15.

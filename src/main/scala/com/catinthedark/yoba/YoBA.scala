@@ -2,9 +2,7 @@ package com.catinthedark.yoba
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
-import com.catinthedark.yoba.lib._
-import com.catinthedark.yoba.lib.records.RecordStorage
-import com.catinthedark.yoba.records.Record
+import com.catinthedark.lib._
 
 import scala.collection.mutable
 import scala.util.Random

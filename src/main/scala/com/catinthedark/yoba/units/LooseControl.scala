@@ -1,8 +1,8 @@
 package com.catinthedark.yoba.units
 
+import com.catinthedark.lib.SimpleUnit
 import com.catinthedark.yoba.Shared
 import com.catinthedark.yoba.common.Const
-import com.catinthedark.yoba.lib.SimpleUnit
 
 /**
  * Used to remove from shared.creatures list object that leave view port

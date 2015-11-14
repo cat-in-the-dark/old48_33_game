@@ -1,9 +1,10 @@
-package com.catinthedark.yoba.lib.animation
+package com.catinthedark.lib.animation
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector2
-import com.catinthedark.yoba.lib.Magic.richifySpriteBatch
+import com.catinthedark.lib.Magic
+import Magic.richifySpriteBatch
 
 /**
  * Created by over on 15.03.15.

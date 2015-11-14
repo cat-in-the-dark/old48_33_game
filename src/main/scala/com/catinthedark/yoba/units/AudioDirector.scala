@@ -1,8 +1,8 @@
 package com.catinthedark.yoba.units
 
-import com.catinthedark.yoba.{Assets, Shared}
+import com.catinthedark.lib.SimpleUnit
 import com.catinthedark.yoba.common.Const
-import com.catinthedark.yoba.lib.SimpleUnit
+import com.catinthedark.yoba.{Assets, Shared}
 
 /**
  * Created by over on 23.08.15.

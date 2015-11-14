@@ -2,8 +2,6 @@ package com.catinthedark.yoba
 
 import com.catinthedark.yoba.entity.Creatures
 import com.catinthedark.yoba.entity.Creatures.Creature
-import com.catinthedark.yoba.lib.records.RecordStorage
-import com.catinthedark.yoba.records.Record
 
 import scala.collection.mutable
 

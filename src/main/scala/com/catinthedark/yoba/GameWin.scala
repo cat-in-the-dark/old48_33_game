@@ -3,14 +3,14 @@ package com.catinthedark.yoba
 import java.net.{HttpURLConnection, URL}
 
 import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.{Gdx, Input}
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.catinthedark.yoba.lib.{Magic, KeyAwaitState, Stub}
-import Magic._
+import com.badlogic.gdx.{Gdx, Input}
+import com.catinthedark.lib.Magic._
+import com.catinthedark.lib.{KeyAwaitState, Magic, Stub}
 import com.catinthedark.yoba.records.Record
 import com.fasterxml.jackson.databind.ObjectMapper
-import scala.collection.JavaConversions._
 
+import scala.collection.JavaConversions._
 import scala.io.Source
 
 /**

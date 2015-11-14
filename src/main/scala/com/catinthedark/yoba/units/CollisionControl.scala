@@ -1,10 +1,10 @@
 package com.catinthedark.yoba.units
 
 import com.badlogic.gdx.math.{Intersector, Rectangle}
-import com.catinthedark.yoba.{Assets, Shared}
+import com.catinthedark.lib.{Deferred, Pipe, SimpleUnit}
 import com.catinthedark.yoba.common.Const
 import com.catinthedark.yoba.entity.Creatures.Creature
-import com.catinthedark.yoba.lib.{Deferred, Pipe, SimpleUnit}
+import com.catinthedark.yoba.{Assets, Shared}
 
 import scala.collection.mutable.ListBuffer
 

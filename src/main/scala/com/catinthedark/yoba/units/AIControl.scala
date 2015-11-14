@@ -1,9 +1,8 @@
 package com.catinthedark.yoba.units
 
+import com.catinthedark.lib.SimpleUnit
 import com.catinthedark.yoba.Shared
-import com.catinthedark.yoba.common.Const
 import com.catinthedark.yoba.entity.Creatures.Creature
-import com.catinthedark.yoba.lib.SimpleUnit
 
 class AIControl(shared: Shared) extends SimpleUnit {
  override def run(delta: Float) = {

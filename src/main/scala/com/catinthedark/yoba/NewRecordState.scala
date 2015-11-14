@@ -3,9 +3,8 @@ package com.catinthedark.yoba
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
-import com.catinthedark.yoba.lib.Magic._
-import com.catinthedark.yoba.lib.{Stub, YieldUnit}
-import com.catinthedark.yoba.records.Record
+import com.catinthedark.lib.Magic._
+import com.catinthedark.lib.{Magic, YieldUnit}
 
 /**
  * Created by over on 23.08.15.
