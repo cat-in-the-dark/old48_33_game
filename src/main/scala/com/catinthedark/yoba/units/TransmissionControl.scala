@@ -92,7 +92,5 @@ abstract class TransmissionControl(shared: Shared) extends SimpleUnit with Defer
       currentPedalPosition = 0
     }
     shared.cursorPosition = currentPedalPosition
-    val a = shared.speed
-//    println(s"$a")
   }
 }

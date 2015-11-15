@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{Gdx, Input}
 import com.catinthedark.lib.Magic._
 import com.catinthedark.lib.{KeyAwaitState, Magic, Stub}
+import com.catinthedark.yoba.common.Const
 import com.catinthedark.yoba.records.Record
 import com.fasterxml.jackson.databind.ObjectMapper
 
@@ -23,8 +24,8 @@ class GameWin(shared: Shared) extends Stub("GameWin") with KeyAwaitState {
 
   override def onActivate(): Unit = {
     records = try {
-      val postConn = new URL("https://yobaludum.appspot.com/").openConnection().asInstanceOf[HttpURLConnection]
-      postConn.setRequestProperty("YoBA-Secret", "YobaSecretLoL")
+      val postConn = new URL(Const.Scores.addScoreUrl).openConnection().asInstanceOf[HttpURLConnection]
+      postConn.setRequestProperty(Const.Scores.authHeader, Const.Scores.authSecret)
       postConn.setRequestProperty("Content-Type", "application/json")
       postConn.setRequestMethod("POST")
       postConn.setDoOutput(true)
@@ -36,7 +37,7 @@ class GameWin(shared: Shared) extends Stub("GameWin") with KeyAwaitState {
       println("respCode:", postConn.getResponseCode)
       postConn.disconnect()
 
-      val getConn = new URL("https://yobaludum.appspot.com/players.json").openConnection().asInstanceOf[HttpURLConnection]
+      val getConn = new URL(Const.Scores.getScoresUrl).openConnection().asInstanceOf[HttpURLConnection]
       postConn.setRequestProperty("Accept", "application/json")
       if (getConn.getResponseCode != 200) {
         getConn.disconnect()

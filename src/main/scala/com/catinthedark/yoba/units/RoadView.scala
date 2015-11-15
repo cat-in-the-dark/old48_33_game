@@ -31,14 +31,13 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
 
     val aspectRatio = 1152.toFloat / 768.toFloat
 
-    val cam = new PerspectiveCamera(160, Gdx.graphics.getWidth(), Gdx.graphics.getHeight())
+    val cam = new PerspectiveCamera(160, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
     cam.position.set(0f, 1f, 0f)
     cam.lookAt(0, 0, 6f)
     cam.near = 0f
     cam.far = 100f
     cam.update()
     val material = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
-    val manMaterial = new Material(TextureAttribute.createDiffuse(Assets.Textures.road))
     var animationDelta = 0.0f
 
 
@@ -164,7 +163,7 @@ abstract class RoadView(val shared: Shared) extends SimpleUnit with Deferred {
               new Vector3(0f, 0f, 1f))
         }
 
-      });
+      })
 
       val model = modelBuilder.end()
 

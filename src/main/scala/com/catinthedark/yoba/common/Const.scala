@@ -116,4 +116,10 @@ object Const {
     val rightPedalKey = Input.Keys.X
   }
 
+  object Scores {
+    val addScoreUrl = "https://yobaludum.appspot.com/"
+    val getScoresUrl = "https://yobaludum.appspot.com/players.json"
+    val authHeader = "YoBA-Secret"
+    val authSecret = "YobaSecretLoL"
+  }
 }

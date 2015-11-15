@@ -27,7 +27,7 @@ abstract class CollisionControl(shared: Shared) extends SimpleUnit with Deferred
 
     //shared.creatures --= toDie
 
-    if (!toDie.isEmpty) {
+    if (toDie.nonEmpty) {
       if (!shared.isFalling)
         Assets.Audios.fall.play(Const.soundVolume)
       shared.isFalling = true

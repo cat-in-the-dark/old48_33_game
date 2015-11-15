@@ -88,8 +88,5 @@ class YoBA extends Game {
 
   override def render() = {
     rm.run(Gdx.graphics.getDeltaTime)
-    //println(Const.Ints.i)
-    //import com.catinthedark.savemedad.common.Const.Strings.str
-    //println(str)
   }
 }
