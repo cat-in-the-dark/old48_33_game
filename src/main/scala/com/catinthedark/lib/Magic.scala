@@ -2,7 +2,9 @@ package com.catinthedark.lib
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.math.{Rectangle, Vector2}
 
 /**
  * Created by over on 13.12.14.
@@ -10,10 +12,28 @@ import com.badlogic.gdx.math.Vector2
 object Magic {
 
   class RichSpriteBatch(val batch: SpriteBatch) {
+    val debugBatch = new ShapeRenderer
+    debugBatch.setProjectionMatrix(batch.getProjectionMatrix)
+    
     def managed(f: SpriteBatch => Unit): Unit = {
       batch.begin()
       f(batch)
       batch.end()
+    }
+
+    /**
+      * Use this method to draw some entities with real-view and physical position. 
+      * So in debug you can see debug rectangle for physical coordinates. 
+      * @param t - texture for real view
+      * @param viewPos - container for real view position
+      * @param physicalPos - container for physical position
+      */
+    def richDraw(t: Texture, viewPos: Rectangle, physicalPos: Rectangle): Unit = {
+      batch.draw(t, viewPos.x, viewPos.y)
+      //TODO: if some kind of debug??
+      //debugBatch.begin(ShapeType.Line)
+      //debugBatch.rect(viewPos.x, viewPos.y, viewPos.width, viewPos.height)
+      //debugBatch.end()
     }
 
     def drawCentered(tex: Texture, x: Float, y: Float,

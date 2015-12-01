@@ -1,7 +1,7 @@
 package com.catinthedark.yoba.units
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.math.Matrix4
+import com.badlogic.gdx.math.{Rectangle, Matrix4}
 import com.catinthedark.lib.Magic.richifySpriteBatch
 import com.catinthedark.lib.{Layer, Magic, SimpleUnit}
 import com.catinthedark.yoba.common.Const.UI
